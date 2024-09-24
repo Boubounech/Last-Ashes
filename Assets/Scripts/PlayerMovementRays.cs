@@ -17,7 +17,7 @@ public class PlayerMovementRays : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpingPower = 200f;
     [SerializeField] private float jumpHoldPower = 60f;
-    private bool wantsToJump = false;
+    [SerializeField] private bool wantsToJump = false;
     private float jumpHoldTimer = 0;
     [SerializeField] private float maxJumpHoldTime = 0.1f;
     [SerializeField] private float shortestDistToGround = 0.1f;
@@ -92,7 +92,7 @@ public class PlayerMovementRays : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpHoldPower);
                 jumpHoldTimer += Time.fixedDeltaTime;
             }
-            else if (isGrounded() && wantsToJump)
+            else if (wantsToJump && isGrounded())
             {
                 if (!hasAlreadyJump)
                 {
