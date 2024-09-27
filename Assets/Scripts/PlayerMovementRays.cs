@@ -8,8 +8,10 @@ public class PlayerMovementRays : MonoBehaviour
     [Header("General")]
     [SerializeField] private float timeRememberInputs = 0.1f;
 
+
     [Header("Move")]
     [SerializeField] private float speed = 4f;
+    private float lookPosition;
     private float horizontalMovement;
     private float wantedHorizontalMovement;
     private bool facingRight = true;
@@ -62,6 +64,8 @@ public class PlayerMovementRays : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         normalGravityScale = rb.gravityScale;
         col = GetComponent<BoxCollider2D>();
+
+  
 
         rightOffset = new Vector2(col.size.x / 3f, 0);
         farRightOffset = rightOffset * 3.5f;
@@ -132,9 +136,11 @@ public class PlayerMovementRays : MonoBehaviour
         if (xVelocity < 0)
         {
             facingRight = false;
+            
         } else if (xVelocity > 0)
         {
             facingRight = true;
+            
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }
@@ -236,9 +242,12 @@ public class PlayerMovementRays : MonoBehaviour
         wantsToDash = false;
     }
 
+
     public void move(InputAction.CallbackContext context)
     {
         wantedHorizontalMovement = context.ReadValue<Vector2>().x;
+        lookPosition = context.ReadValue<Vector2>().y;
+        Debug.Log(lookPosition);
     }
 
     public void jump(InputAction.CallbackContext context)
@@ -261,5 +270,15 @@ public class PlayerMovementRays : MonoBehaviour
         {
             setWantsToDashTo(true);
         }
+    }
+
+    public bool getFacing()
+    {
+        return this.facingRight;
+    }
+
+    public float getLook()
+    {
+        return this.lookPosition;
     }
 }
