@@ -11,7 +11,7 @@ public class PlayerMovementRays : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
-    private float lookPosition;
+    private float lookUpPosition;
     private float horizontalMovement;
     private float wantedHorizontalMovement;
     private bool facingRight = true;
@@ -104,7 +104,7 @@ public class PlayerMovementRays : MonoBehaviour
                     hasJumpedOnce = true;
                     hasAlreadyJump = true;
                     jumpHoldTimer = 0;
-                    rb.AddForce(Vector2.up * jumpingPower);
+                    JumpAction(jumpingPower);
                 }
             }
             else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce == hasCanceledOnce && !isTooNearToDJ())
@@ -114,7 +114,7 @@ public class PlayerMovementRays : MonoBehaviour
                 canDoubleJump = false;
                 hasJumpedOnce = true;
                 hasAlreadyJump = true;
-                rb.AddForce(Vector2.up * doubleJumpPower);
+                JumpAction(doubleJumpPower);
             }
 
             if (Math.Abs(rb.velocity.y) < airZone)
@@ -143,6 +143,16 @@ public class PlayerMovementRays : MonoBehaviour
             
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
+    }
+
+    public void JumpAction(float jumpPower)
+    {
+        rb.AddForce(Vector2.up * jumpPower);
+    }
+
+    public void ResetVelocity()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
     }
 
     private bool isGrounded()
@@ -246,8 +256,7 @@ public class PlayerMovementRays : MonoBehaviour
     public void move(InputAction.CallbackContext context)
     {
         wantedHorizontalMovement = context.ReadValue<Vector2>().x;
-        lookPosition = context.ReadValue<Vector2>().y;
-        Debug.Log(lookPosition);
+        lookUpPosition = context.ReadValue<Vector2>().y;
     }
 
     public void jump(InputAction.CallbackContext context)
@@ -279,6 +288,6 @@ public class PlayerMovementRays : MonoBehaviour
 
     public float getLook()
     {
-        return this.lookPosition;
+        return this.lookUpPosition;
     }
 }

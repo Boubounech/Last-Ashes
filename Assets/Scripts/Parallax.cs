@@ -12,9 +12,13 @@ public class Parallax : MonoBehaviour
     private Vector2 cameraStartPosition;
     private Vector2 cameraCurrentPosition => stageCamera.position;
     private Vector2 deltaCamera;
+
+    private bool init;
+    private float basePosY;
+
     
     [Tooltip("Restriction of the Y-Axis Movement")]
-    [SerializeField] [Range(0f, 1f)] private float verticalRestriction = 0.5f;
+    //[SerializeField] [Range(0f, 1f)] private float verticalRestriction = 0.5f;
     
     [System.Serializable]
     public class ParallaxLayer
@@ -32,6 +36,7 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         cameraStartPosition = stageCamera.position;
+        init = true;
     }
     
     void Update()
@@ -43,9 +48,16 @@ public class Parallax : MonoBehaviour
             var currentLayer = layer[i];
             var layerPosit = currentLayer.layerObject.position;
             var multiplyer = currentLayer.distanceFromCamera;
+
+            if (init == true)
+            {
+                basePosY = layerPosit.y;
+                init = false;
+            }
             
             layerPosit.x = deltaCamera.x * multiplyer;
-            layerPosit.y = -0.018f*layerPosit.z; // le -0.018f pour enlever le pb de perspective avec la pos Z du fond
+
+            layerPosit.y = basePosY -0.02f * layerPosit.z;
 
             currentLayer.layerObject.position = layerPosit;
         }

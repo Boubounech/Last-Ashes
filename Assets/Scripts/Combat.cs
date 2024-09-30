@@ -10,15 +10,17 @@ public class Combat : MonoBehaviour
     public GameObject player;
     BoxCollider2D attackCollider;
     SpriteRenderer attackRenderer;
+
     private float offsetPlayerSizeX;
     private float offsetPlayerSizeY;
     private bool facingRight;
     private bool allowChangeFacing;
-    private float lookPos;
+    private float lookUpPos;
     private float valueX;
     private float valueY;
     private float boxOffsetY;
     private bool isOnCooldown;
+    [SerializeField] private float pogoPower;
 
 
     private void Start()
@@ -36,22 +38,21 @@ public class Combat : MonoBehaviour
 
     private void Update()
     {
-        lookPos = playerMovementScript.getLook();
-        facingRight = playerMovementScript.getFacing();
-
         if (allowChangeFacing)
         {
-            if(lookPos > 0f)
+            lookUpPos = playerMovementScript.getLook();
+            facingRight = playerMovementScript.getFacing();
+            if (lookUpPos > 0f)
             {
                 valueX = 0f;
                 valueY = offsetPlayerSizeY + boxOffsetY;
             }
-            else if(lookPos < 0f)
+            else if(lookUpPos < 0f)
             {
                 valueX = 0f;
                 valueY = -offsetPlayerSizeY + boxOffsetY;
             }
-            else if(lookPos == 0f)
+            else if(lookUpPos == 0f)
             {
                 valueY = 0.5f;
                 if (facingRight)
@@ -81,9 +82,10 @@ public class Combat : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         attackRenderer.enabled = false;
         attackCollider.enabled = false;
-        allowChangeFacing = true;
+
 
         yield return new WaitForSeconds(0.3f);
+        allowChangeFacing = true;
         isOnCooldown = false;
     }
 
@@ -96,5 +98,21 @@ public class Combat : MonoBehaviour
                 StartCoroutine(ToggleAttack());
             }
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (lookUpPos < 0f)
+            {
+                Debug.Log("trigger Enemy Down");
+                playerMovementScript.ResetVelocity();
+                playerMovementScript.JumpAction(pogoPower);
+            }
+            Destroy(other.gameObject);
+        }
+
+
     }
 }
