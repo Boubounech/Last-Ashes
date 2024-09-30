@@ -42,11 +42,10 @@ public class Parallax : MonoBehaviour
         {
             var currentLayer = layer[i];
             var layerPosit = currentLayer.layerObject.position;
-            var multiplyerX = currentLayer.distanceFromCamera;
-            var multiplyerY = ((1 - multiplyerX) * verticalRestriction) + multiplyerX;
+            var multiplyer = currentLayer.distanceFromCamera;
             
-            layerPosit.x = deltaCamera.x * multiplyerX;
-            layerPosit.y = deltaCamera.y * multiplyerY;
+            layerPosit.x = deltaCamera.x * multiplyer;
+            layerPosit.y = -0.018f*layerPosit.z; // le -0.018f pour enlever le pb de perspective avec la pos Z du fond
 
             currentLayer.layerObject.position = layerPosit;
         }
