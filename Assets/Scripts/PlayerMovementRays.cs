@@ -7,7 +7,7 @@ public class PlayerMovementRays : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float timeRememberInputs = 0.1f;
-
+    [SerializeField] private Animator animator;
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
@@ -133,14 +133,22 @@ public class PlayerMovementRays : MonoBehaviour
         }
 
         xVelocity = horizontalMovement * speed;
+        if (Math.Abs(xVelocity) > 0.1)
+        {
+            animator.SetBool("IsMoving", true);
+        } else
+        {
+            animator.SetBool("IsMoving", false);
+        }
         if (xVelocity < 0)
         {
             facingRight = false;
-            
+            animator.transform.localRotation = Quaternion.Euler(0, 180, 0);
+
         } else if (xVelocity > 0)
         {
             facingRight = true;
-            
+            animator.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }
