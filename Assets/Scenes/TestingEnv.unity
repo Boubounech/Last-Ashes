@@ -3027,6 +3027,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 539857932514570527, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1874376953}
+    - target: {fileID: 539857932514570527, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: wantsToJump
       value: 0
       objectReference: {fileID: 0}
@@ -3807,6 +3811,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1874376953 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4835103296759411959, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+  m_PrefabInstance: {fileID: 1429005560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901283984
 GameObject:
   m_ObjectHideFlags: 0
