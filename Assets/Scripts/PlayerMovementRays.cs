@@ -133,7 +133,7 @@ public class PlayerMovementRays : MonoBehaviour
         }
 
         xVelocity = horizontalMovement * speed;
-        if (Math.Abs(xVelocity) > 0.1)
+        if (Math.Abs(xVelocity) > 0.03)
         {
             animator.SetBool("IsMoving", true);
         } else
