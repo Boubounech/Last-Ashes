@@ -114,7 +114,6 @@ public class Combat : MonoBehaviour
             if (lookUpPos < 0f)
             {
                 Debug.Log("trigger Enemy Down");
-                playerMovementScript.ResetVelocity();
                 playerMovementScript.JumpAction(pogoPower);
             }
             Destroy(other.gameObject);
