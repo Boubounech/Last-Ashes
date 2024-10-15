@@ -49,10 +49,17 @@ public class Combat : MonoBehaviour
             }
             else if(lookUpPos < 0f)
             {
-                valueX = 0f;
-                valueY = -offsetPlayerSizeY + boxOffsetY;
+                if (playerMovementScript.isGrounded())
+                {
+                    lookUpPos = 0f; 
+                }
+                else
+                {
+                    valueX = 0f;
+                    valueY = -offsetPlayerSizeY + boxOffsetY;
+                }
             }
-            else if(lookUpPos == 0f)
+            if(lookUpPos == 0f)
             {
                 valueY = 0.5f;
                 if (facingRight)

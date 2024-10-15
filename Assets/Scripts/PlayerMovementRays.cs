@@ -78,6 +78,7 @@ public class PlayerMovementRays : MonoBehaviour
     {
         float xVelocity = 0;
         float yVelocity = 0;
+        
 
         if (allowDash && wantsToDash && !isDashing && canDash)
         {
@@ -163,7 +164,7 @@ public class PlayerMovementRays : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         //Debug.DrawRay(rb.position, Vector2.down, Color.green, shortestDistToGround);
         //Debug.DrawRay(rb.position + rightOffset, Vector2.down, Color.green, shortestDistToGround);
