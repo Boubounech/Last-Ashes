@@ -50,6 +50,12 @@ public class PlayerMovementRays : MonoBehaviour
     private float normalGravityScale;
     [SerializeField] private float maxVerticalSpeed;
 
+    [Header("WallJump")]
+    [SerializeField] private bool allowWallJump;
+    [SerializeField] private float timerChangeOrientation;
+    [SerializeField] private float slideSpeed;
+    private bool allowChangeOrientation = true;
+
     private Rigidbody2D rb;
     private BoxCollider2D col;
 
@@ -58,6 +64,8 @@ public class PlayerMovementRays : MonoBehaviour
 
     private Vector2 upOffset;
     private Vector2 downOffset;
+
+
 
     private void Start()
     {
@@ -76,9 +84,8 @@ public class PlayerMovementRays : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float xVelocity = 0;
-        float yVelocity = 0;
-        
+        float xVelocity = 0f;
+        float yVelocity = 0f;
 
         if (allowDash && wantsToDash && !isDashing && canDash)
         {
@@ -97,20 +104,18 @@ public class PlayerMovementRays : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpHoldPower);
                 jumpHoldTimer += Time.fixedDeltaTime;
             }
-            else if (wantsToJump && isGrounded())
+            else if (wantsToJump && (isGrounded() || (isAgainstWall() && allowWallJump) ) )
             {
                 if (!hasAlreadyJump)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    JumpAction(jumpingPower);
                     hasJumpedOnce = true;
                     hasAlreadyJump = true;
                     jumpHoldTimer = 0;
-                    JumpAction(jumpingPower);
                 }
             }
-            else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce == hasCanceledOnce && !isTooNearToDJ())
+            else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce && hasCanceledOnce && !isTooNearToDJ())
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
                 jumpHoldTimer += maxJumpHoldTime;
                 canDoubleJump = false;
                 hasJumpedOnce = true;
@@ -118,22 +123,38 @@ public class PlayerMovementRays : MonoBehaviour
                 JumpAction(doubleJumpPower);
             }
 
-            if (Math.Abs(rb.velocity.y) < airZone)
+            if (isAgainstWall() && allowWallJump)
             {
-                rb.gravityScale = airGravityScale;
-            }
-            else if (rb.velocity.y < 0)
-            {
-                rb.gravityScale = fallGravityScale;
+                yVelocity = -slideSpeed;
             }
             else
             {
-                rb.gravityScale = normalGravityScale;
+                if (Math.Abs(rb.velocity.y) < airZone)
+                {
+                    rb.gravityScale = airGravityScale;
+                }
+                else if (rb.velocity.y < 0)
+                {
+                    rb.gravityScale = fallGravityScale;
+                }
+                else
+                {
+                    rb.gravityScale = normalGravityScale;
+                }
+                yVelocity = rb.velocity.y >= 0 ? Math.Min(rb.velocity.y, maxVerticalSpeed) : Math.Max(rb.velocity.y, -maxVerticalSpeed);
             }
-            yVelocity = rb.velocity.y >= 0 ? Math.Min(rb.velocity.y, maxVerticalSpeed) : Math.Max(rb.velocity.y, -maxVerticalSpeed);
+            
         }
 
-        xVelocity = horizontalMovement * speed;
+        if (allowChangeOrientation)
+        {
+            xVelocity = horizontalMovement * speed;
+        }
+        else
+        {
+            xVelocity = rb.velocity.x;
+        }
+
         if (Math.Abs(xVelocity) > 0.03)
         {
             animator.SetBool("IsMoving", true);
@@ -154,15 +175,26 @@ public class PlayerMovementRays : MonoBehaviour
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }
 
-    public void JumpAction(float jumpPower)
+
+
+public void JumpAction(float jumpPower)
     {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+
+        if (isAgainstWall() && allowWallJump)
+        {
+            Vector2 oppositeDirection = facingRight ? Vector2.left : Vector2.right;
+            rb.AddForce(oppositeDirection * jumpPower);
+            allowChangeOrientation = false;
+            hasCanceledOnce = false;
+            canDoubleJump = true;
+            StopCoroutine(cooldownChangeOrientation());
+            StartCoroutine(cooldownChangeOrientation());
+        }
+
         rb.AddForce(Vector2.up * jumpPower);
     }
 
-    public void ResetVelocity()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-    }
 
     public bool isGrounded()
     {
@@ -196,22 +228,23 @@ public class PlayerMovementRays : MonoBehaviour
 
     private bool isAgainstWall()
     {
-        Debug.DrawRay(rb.position + upOffset + rightOffset, Vector2.right, Color.red, shortestDistToGround);
-        Debug.DrawRay(rb.position + downOffset + rightOffset, Vector2.right, Color.red, shortestDistToGround);
-        Debug.DrawRay(rb.position + upOffset - rightOffset, Vector2.left, Color.red, shortestDistToGround);
-        Debug.DrawRay(rb.position + downOffset - rightOffset, Vector2.left, Color.red, shortestDistToGround);
-        bool i =
-            Physics2D.Raycast(rb.position + upOffset + rightOffset, Vector2.right, shortestDistToGround, groundLayer).collider != null
-            || Physics2D.Raycast(rb.position + downOffset + rightOffset, Vector2.right, shortestDistToGround, groundLayer).collider != null
-            || Physics2D.Raycast(rb.position + upOffset - rightOffset, Vector2.left, shortestDistToGround, groundLayer).collider != null
-            || Physics2D.Raycast(rb.position + downOffset - rightOffset, Vector2.left, shortestDistToGround, groundLayer).collider != null;
-        if (i)
+        float wallCheckDistance = 0.35f;  
+        Vector2 rayDirection = facingRight ? Vector2.right : Vector2.left;
+
+        RaycastHit2D upperRay = Physics2D.Raycast(rb.position + upOffset, rayDirection, wallCheckDistance, groundLayer);
+        RaycastHit2D lowerRay = Physics2D.Raycast(rb.position + downOffset, rayDirection, wallCheckDistance, groundLayer);
+
+        Debug.DrawRay(rb.position + upOffset, rayDirection * wallCheckDistance, Color.red);
+        Debug.DrawRay(rb.position + downOffset, rayDirection * wallCheckDistance, Color.red);
+
+        bool isTouchingWall = upperRay.collider != null || lowerRay.collider != null;
+        /*if (isTouchingWall)
         {
             canDoubleJump = true;
             hasJumpedOnce = false;
             hasCanceledOnce = false;
-        }
-        return i;
+        }*/
+        return isTouchingWall;
     }
 
     IEnumerator dashCoroutine()
@@ -223,6 +256,12 @@ public class PlayerMovementRays : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashReloadTime);
         canDash = true;
+    }
+
+    IEnumerator cooldownChangeOrientation()
+    {
+        yield return new WaitForSeconds(timerChangeOrientation);
+        allowChangeOrientation = true;
     }
 
     private void setWantsToJumpTo(bool wantsTo)
@@ -280,6 +319,8 @@ public class PlayerMovementRays : MonoBehaviour
             setWantsToJumpTo(false);
             hasAlreadyJump = false;
         }
+
+
     }
 
     public void dash(InputAction.CallbackContext context)
