@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementRays : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerMovementRays : MonoBehaviour
     [Header("General")]
     [SerializeField] private float timeRememberInputs = 0.1f;
     [SerializeField] private Animator animator;
+    [SerializeField] private bool hasControl = true;
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
@@ -65,14 +67,17 @@ public class PlayerMovementRays : MonoBehaviour
     private Vector2 upOffset;
     private Vector2 downOffset;
 
+    public UnityAction OnPlayerRegainControl;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         normalGravityScale = rb.gravityScale;
         col = GetComponent<BoxCollider2D>();
-
   
 
         rightOffset = new Vector2(col.size.x / 3f, 0);
@@ -87,63 +92,66 @@ public class PlayerMovementRays : MonoBehaviour
         float xVelocity = 0f;
         float yVelocity = 0f;
 
-        if (allowDash && wantsToDash && !isDashing && canDash)
+        if (hasControl)
         {
-            isDashing = true;
-            rb.gravityScale = 0;
-            setWantsToDashTo(false);
-            StartCoroutine(dashCoroutine());
-        }
-
-        if (!allowDash || !isDashing)
-        {
-            horizontalMovement = wantedHorizontalMovement;
-
-            if (wantsToJump && jumpHoldTimer < maxJumpHoldTime && rb.velocity.y > 0 && hasJumpedOnce != hasCanceledOnce)
+            if (allowDash && wantsToDash && !isDashing && canDash)
             {
-                rb.AddForce(Vector2.up * jumpHoldPower);
-                jumpHoldTimer += Time.fixedDeltaTime;
+                isDashing = true;
+                rb.gravityScale = 0;
+                setWantsToDashTo(false);
+                StartCoroutine(dashCoroutine());
             }
-            else if (wantsToJump && (isGrounded() || (isAgainstWall() && allowWallJump) ) )
+
+            if (!allowDash || !isDashing)
             {
-                if (!hasAlreadyJump)
+                horizontalMovement = wantedHorizontalMovement;
+
+                if (wantsToJump && jumpHoldTimer < maxJumpHoldTime && rb.velocity.y > 0 && hasJumpedOnce != hasCanceledOnce)
                 {
-                    JumpAction(jumpingPower);
+                    rb.AddForce(Vector2.up * jumpHoldPower);
+                    jumpHoldTimer += Time.fixedDeltaTime;
+                }
+                else if (wantsToJump && (isGrounded() || (isAgainstWall() && allowWallJump)))
+                {
+                    if (!hasAlreadyJump)
+                    {
+                        JumpAction(jumpingPower);
+                        hasJumpedOnce = true;
+                        hasAlreadyJump = true;
+                        jumpHoldTimer = 0;
+                    }
+                }
+                else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce && hasCanceledOnce && !isTooNearToDJ())
+                {
+                    jumpHoldTimer += maxJumpHoldTime;
+                    canDoubleJump = false;
                     hasJumpedOnce = true;
                     hasAlreadyJump = true;
-                    jumpHoldTimer = 0;
+                    JumpAction(doubleJumpPower);
                 }
-            }
-            else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce && hasCanceledOnce && !isTooNearToDJ())
-            {
-                jumpHoldTimer += maxJumpHoldTime;
-                canDoubleJump = false;
-                hasJumpedOnce = true;
-                hasAlreadyJump = true;
-                JumpAction(doubleJumpPower);
-            }
 
-            if (isAgainstWall() && allowWallJump)
-            {
-                yVelocity = -slideSpeed;
-            }
-            else
-            {
-                if (Math.Abs(rb.velocity.y) < airZone)
+                if (isAgainstWall() && allowWallJump)
                 {
-                    rb.gravityScale = airGravityScale;
-                }
-                else if (rb.velocity.y < 0)
-                {
-                    rb.gravityScale = fallGravityScale;
+                    yVelocity = -slideSpeed;
                 }
                 else
                 {
-                    rb.gravityScale = normalGravityScale;
+                    if (Math.Abs(rb.velocity.y) < airZone)
+                    {
+                        rb.gravityScale = airGravityScale;
+                    }
+                    else if (rb.velocity.y < 0)
+                    {
+                        rb.gravityScale = fallGravityScale;
+                    }
+                    else
+                    {
+                        rb.gravityScale = normalGravityScale;
+                    }
+                    yVelocity = rb.velocity.y >= 0 ? Math.Min(rb.velocity.y, maxVerticalSpeed) : Math.Max(rb.velocity.y, -maxVerticalSpeed);
                 }
-                yVelocity = rb.velocity.y >= 0 ? Math.Min(rb.velocity.y, maxVerticalSpeed) : Math.Max(rb.velocity.y, -maxVerticalSpeed);
+
             }
-            
         }
 
         if (allowChangeOrientation)
@@ -172,12 +180,15 @@ public class PlayerMovementRays : MonoBehaviour
             facingRight = true;
             animator.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        rb.velocity = new Vector2(xVelocity, yVelocity);
+        if (hasControl)
+        {
+            rb.velocity = new Vector2(xVelocity, yVelocity);
+        }
     }
 
 
 
-public void JumpAction(float jumpPower)
+    public void JumpAction(float jumpPower)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
 
@@ -319,8 +330,6 @@ public void JumpAction(float jumpPower)
             setWantsToJumpTo(false);
             hasAlreadyJump = false;
         }
-
-
     }
 
     public void dash(InputAction.CallbackContext context)
@@ -339,5 +348,19 @@ public void JumpAction(float jumpPower)
     public float getLook()
     {
         return this.lookUpPosition;
+    }
+
+    public void TakeControlAndMoveTo(Vector3 newPosition)
+    {
+        hasControl = false;
+        rb.velocity = new Vector2(Mathf.Sign(newPosition.x - transform.position.x) * speed, rb.velocity.y);
+        float timeToMove = Vector3.Distance(transform.position, newPosition) / speed;
+        Invoke("AllowMovement", timeToMove);
+    }
+
+    private void AllowMovement()
+    {
+        hasControl = true;
+        OnPlayerRegainControl.Invoke();
     }
 }
