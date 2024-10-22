@@ -1550,7 +1550,7 @@ Transform:
   m_GameObject: {fileID: 349538187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.84, z: -310}
+  m_LocalPosition: {x: -0.57, y: 3.42, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5152,8 +5152,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: faea6bd94da0d5445a59f1b632b9ca5e, type: 2}
     - target: {fileID: 7940454731106881613, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940454731106881613, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 8136108715782015852, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_Enabled
@@ -5166,6 +5170,14 @@ PrefabInstance:
     - target: {fileID: 8136108715782015852, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741661568396106523, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741661568396106523, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9190453121125624078, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_FlipX
@@ -5192,7 +5204,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7205857368263512640, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
@@ -7454,7 +7467,7 @@ Transform:
   m_GameObject: {fileID: 2139358718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.84, z: -310}
+  m_LocalPosition: {x: -0.57, y: 3.42, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
