@@ -107,18 +107,14 @@ public class Combat : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public void dealDamage(GameObject reciever)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (lookUpPos < 0f)
         {
-            if (lookUpPos < 0f)
-            {
-                Debug.Log("trigger Enemy Down");
-                playerMovementScript.JumpAction(pogoPower);
-            }
-            Destroy(other.gameObject);
+            playerMovementScript.JumpAction(pogoPower);
         }
-
-
+        Destroy(reciever);
     }
+
+    
 }
