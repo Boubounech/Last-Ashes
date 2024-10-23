@@ -6,6 +6,9 @@ public class PlayerLifeBehavior : MonoBehaviour
 {
 
     [SerializeField] private float invicibilityTime;
+    [SerializeField] private float damageKnockbackPower;
+    public PlayerMovementRays playerMovementScript;
+
     private BoxCollider2D col;
 
     private void Start()
@@ -19,11 +22,12 @@ public class PlayerLifeBehavior : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             LifePointsManager.instance.LoseHp();
-            StartCoroutine(InvibilityTimerCoroutine());
+            playerMovementScript.KnockbackFromDamage(damageKnockbackPower);
+            StartCoroutine(InvicibilityTimerCoroutine());
         }
     }
 
-    private IEnumerator InvibilityTimerCoroutine()
+    private IEnumerator InvicibilityTimerCoroutine()
     {
         col.enabled = false;
         yield return new WaitForSeconds(invicibilityTime);

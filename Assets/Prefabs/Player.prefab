@@ -418,10 +418,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRememberInputs: 0.1
-  animator: {fileID: 0}
+  animator: {fileID: 4835103296759411959}
   hasControl: 1
+  timerKnockbackDamage: 0.5
   speed: 8
-  jumpingPower: 800
+  jumpingPower: 600
   jumpHoldPower: 60
   wantsToJump: 0
   maxJumpHoldTime: 0.1
@@ -432,7 +433,7 @@ MonoBehaviour:
   hasAlreadyJump: 0
   airZone: 5
   allowDoubleJump: 1
-  doubleJumpPower: 800
+  doubleJumpPower: 600
   shortestDistToGroundForDJ: 1
   allowDash: 1
   dashPower: 5
@@ -441,9 +442,9 @@ MonoBehaviour:
   airGravityScale: 0.75
   fallGravityScale: 2
   maxVerticalSpeed: 40
-  allowWallJump: 0
-  timerChangeOrientation: 0
-  slideSpeed: 0
+  allowWallJump: 1
+  timerChangeOrientation: 0.1
+  slideSpeed: 2
 --- !u!114 &3102706042425436854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   playerMovementScript: {fileID: 539857932514570527}
   attackBox: {fileID: 3626167750090349273}
   player: {fileID: 2370407995996683934}
-  pogoPower: 0
+  pogoPower: 600
 --- !u!1 &3438266269082504588
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +660,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -862,7 +863,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c10ee65f6ec934c9a341f7850d410f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePointsManager: {fileID: 0}
+  invicibilityTime: 1.5
+  damageKnockbackPower: 400
+  playerMovementScript: {fileID: 539857932514570527}
 --- !u!1 &6186593872726181040
 GameObject:
   m_ObjectHideFlags: 0
