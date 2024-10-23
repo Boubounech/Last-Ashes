@@ -10,6 +10,7 @@ public class PlayerMovementRays : MonoBehaviour
     [SerializeField] private float timeRememberInputs = 0.1f;
     [SerializeField] private Animator animator;
     [SerializeField] private bool hasControl = true;
+    [SerializeField] private float timerKnockbackDamage;
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
@@ -194,18 +195,30 @@ public class PlayerMovementRays : MonoBehaviour
 
         if (isAgainstWall() && allowWallJump)
         {
-            Vector2 oppositeDirection = facingRight ? Vector2.left : Vector2.right;
-            rb.AddForce(oppositeDirection * jumpPower);
-            allowChangeOrientation = false;
+            BounceOppositeDirection(jumpPower, timerChangeOrientation);
             hasCanceledOnce = false;
             canDoubleJump = true;
-            StopCoroutine(cooldownChangeOrientation());
-            StartCoroutine(cooldownChangeOrientation());
         }
 
         rb.AddForce(Vector2.up * jumpPower);
     }
 
+    public void KnockbackFromDamage(float knockbackPower)
+    {
+        rb.gravityScale = normalGravityScale;
+        rb.velocity = new Vector2(0, 0);
+        rb.AddForce(Vector2.up * 1.5f * knockbackPower);
+        BounceOppositeDirection(knockbackPower, timerKnockbackDamage);
+    }
+
+    public void BounceOppositeDirection(float jumpPower, float timerCooldown)
+    {
+        Vector2 oppositeDirection = facingRight ? Vector2.left : Vector2.right;
+        rb.AddForce(oppositeDirection * jumpPower);
+        StopCoroutine(cooldownChangeOrientation(timerCooldown));
+        StartCoroutine(cooldownChangeOrientation(timerCooldown));
+
+    }
 
     public bool isGrounded()
     {
@@ -269,10 +282,13 @@ public class PlayerMovementRays : MonoBehaviour
         canDash = true;
     }
 
-    IEnumerator cooldownChangeOrientation()
+    IEnumerator cooldownChangeOrientation(float time)
     {
-        yield return new WaitForSeconds(timerChangeOrientation);
+        allowChangeOrientation = false;
+        hasControl = false;
+        yield return new WaitForSeconds(time);
         allowChangeOrientation = true;
+        hasControl = true;
     }
 
     private void setWantsToJumpTo(bool wantsTo)

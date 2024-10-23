@@ -5,10 +5,9 @@ using UnityEngine;
 public class VitalEnergieManager : MonoBehaviour
 {
     [SerializeField] private float maxEnergieTime;
-    private float timesSpeedMultiplicator = 1f;
+    private float timeSpeedMultiplicator = 1f;
     private float currentEnergieTime;
     private bool stopTimer;
-
 
     public static VitalEnergieManager instance;
 
@@ -36,13 +35,12 @@ public class VitalEnergieManager : MonoBehaviour
         {
             if (currentEnergieTime >= 0)
             {
-                currentEnergieTime -= Time.deltaTime * timesSpeedMultiplicator;
+                currentEnergieTime -= Time.deltaTime * timeSpeedMultiplicator;
             }
             else
             {
                 stopTimer = true;
                 Debug.Log("mort");
-                ResetTimer();
             }
         }
     }
@@ -70,6 +68,6 @@ public class VitalEnergieManager : MonoBehaviour
 
     public void ChangeSpeedTimer(float speedMult)
     {
-        timesSpeedMultiplicator = speedMult;
+        timeSpeedMultiplicator = speedMult;
     }
 }
