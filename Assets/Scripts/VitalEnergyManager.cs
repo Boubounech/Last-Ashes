@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VitalEnergieManager : MonoBehaviour
+public class VitalEnergyManager : MonoBehaviour
 {
-    [SerializeField] private float maxEnergieTime;
+    [SerializeField] private float maxEnergyTime;
     private float timeSpeedMultiplicator = 1f;
-    private float currentEnergieTime;
+    private float currentEnergyTime;
     private bool stopTimer;
 
-    public static VitalEnergieManager instance;
+    public static VitalEnergyManager instance;
 
     private void Awake()
     {
@@ -33,9 +33,9 @@ public class VitalEnergieManager : MonoBehaviour
     {
         if(stopTimer == false)
         {
-            if (currentEnergieTime >= 0)
+            if (currentEnergyTime >= 0)
             {
-                currentEnergieTime -= Time.deltaTime * timeSpeedMultiplicator;
+                currentEnergyTime -= Time.deltaTime * timeSpeedMultiplicator;
             }
             else
             {
@@ -47,12 +47,12 @@ public class VitalEnergieManager : MonoBehaviour
 
     public void RemoveTime(float removeTime)
     {
-        currentEnergieTime -= removeTime;
+        currentEnergyTime -= removeTime;
     }
 
     public void ResetTimer()
     {
-        currentEnergieTime = maxEnergieTime;
+        currentEnergyTime = maxEnergyTime;
         stopTimer = false;
     }
 
@@ -69,5 +69,10 @@ public class VitalEnergieManager : MonoBehaviour
     public void ChangeSpeedTimer(float speedMult)
     {
         timeSpeedMultiplicator = speedMult;
+    }
+
+    public float GetCurrentEnergyPercent()
+    {
+        return currentEnergyTime / maxEnergyTime;
     }
 }

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LifePointsManager : MonoBehaviour
 {
     [SerializeField] private int maxHpPoints;
-    private int currentHp;
+    [SerializeField] private int currentHp;
 
     public static LifePointsManager instance;
+
+    public static UnityEvent<int> OnHpChanged = new UnityEvent<int>();
 
     private void Awake()
     {
@@ -30,11 +33,12 @@ public class LifePointsManager : MonoBehaviour
     public void SetHpTo(int hp)
     {
         this.currentHp = hp;
+        OnHpChanged.Invoke(hp);
     }
 
     public void LoseHp()
     {
-        currentHp--;
+        SetHpTo(currentHp - 1);
         Debug.Log(currentHp);
         if(currentHp == 0)
         {
