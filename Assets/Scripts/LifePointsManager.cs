@@ -39,15 +39,23 @@ public class LifePointsManager : MonoBehaviour
     public void LoseHp()
     {
         SetHpTo(currentHp - 1);
-        Debug.Log(currentHp);
         if(currentHp == 0)
         {
-            Debug.Log("mort");
+            //mort 
         }
+    }
+
+    public void GainHp()
+    {
+        SetHpTo(currentHp + 1);
     }
 
     public int GetHp()
     {
         return this.currentHp;
+    }
+    public int GetMaxHp()
+    {
+        return this.maxHpPoints;
     }
 }

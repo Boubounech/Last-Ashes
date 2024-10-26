@@ -59,6 +59,16 @@ public class PlayerMovementRays : MonoBehaviour
     [SerializeField] private float slideSpeed;
     private bool allowChangeOrientation = true;
 
+    [Header("Heal")]
+    [SerializeField] private float timeToHeal;
+    [SerializeField] private float healActionVitalEnergyCost;
+    private Coroutine healCoroutine;
+
+    [Header("Campfire")]
+    [SerializeField] private DetectCampfire detectCampfireScript;
+
+
+
     private Rigidbody2D rb;
     private BoxCollider2D col;
 
@@ -282,13 +292,11 @@ public class PlayerMovementRays : MonoBehaviour
         canDash = true;
     }
 
-    IEnumerator cooldownChangeOrientation(float time)
+    private IEnumerator cooldownChangeOrientation(float time)
     {
-        allowChangeOrientation = false;
-        hasControl = false;
+        DisableMovement();
         yield return new WaitForSeconds(time);
-        allowChangeOrientation = true;
-        hasControl = true;
+        EnableMovement();
     }
 
     private void setWantsToJumpTo(bool wantsTo)
@@ -365,6 +373,70 @@ public class PlayerMovementRays : MonoBehaviour
     {
         return this.lookUpPosition;
     }
+
+    public void Heal(InputAction.CallbackContext context)
+    {
+        if (LifePointsManager.instance.GetHp() < LifePointsManager.instance.GetMaxHp() && isGrounded())
+        {
+            if (context.performed)
+            {
+                if (healCoroutine != null)
+                {
+                    StopCoroutine(healCoroutine);
+                }
+                healCoroutine = StartCoroutine(HealCoroutine());
+            }
+            else if (context.canceled)
+            {
+                StopCoroutine(healCoroutine);
+                EnableMovement();
+            }
+        }
+    }
+
+    private IEnumerator HealCoroutine()
+    {
+        DisableMovement();
+        while (true) 
+        {
+            rb.velocity = new Vector2(0, 0);
+            if (LifePointsManager.instance.GetHp() >= LifePointsManager.instance.GetMaxHp())
+            {
+                EnableMovement();
+                healCoroutine = null;
+                yield break; 
+            }
+            yield return new WaitForSeconds(timeToHeal);
+
+            VitalEnergyManager.instance.RemoveTime(healActionVitalEnergyCost);
+            LifePointsManager.instance.GainHp();
+        }
+    }
+
+    private void EnableMovement()
+    {
+        hasControl = true;
+        allowChangeOrientation = true;
+    }
+
+    private void DisableMovement()
+    {
+        hasControl = false;
+        allowChangeOrientation = false;
+    }
+
+    public void UseCampfire(InputAction.CallbackContext context)
+    {
+        if (detectCampfireScript.GetIsCloseToCampfire())
+        {
+            if (context.performed)
+            {
+                LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
+                VitalEnergyManager.instance.ResetTimer();
+            }
+        }
+    }
+
 
     public void TakeControlAndMoveTo(Vector3 newPosition)
     {
