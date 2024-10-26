@@ -90,7 +90,6 @@ public class PlayerMovementRays : MonoBehaviour
     {
         normalGravityScale = rb.gravityScale;
         col = GetComponent<BoxCollider2D>();
-  
 
         rightOffset = new Vector2(col.size.x / 3f, 0);
         farRightOffset = rightOffset * 3.5f;
@@ -101,6 +100,7 @@ public class PlayerMovementRays : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool wasFacingRight = facingRight;
         float xVelocity = 0f;
         float yVelocity = 0f;
 
@@ -194,6 +194,10 @@ public class PlayerMovementRays : MonoBehaviour
         }
         if (hasControl)
         {
+            if (wasFacingRight != facingRight)
+            {
+                PlayerEvents.OnPlayerHorizontalFacing.Invoke(xVelocity);
+            }
             rb.velocity = new Vector2(xVelocity, yVelocity);
         }
     }
@@ -335,7 +339,12 @@ public class PlayerMovementRays : MonoBehaviour
     public void move(InputAction.CallbackContext context)
     {
         wantedHorizontalMovement = context.ReadValue<Vector2>().x;
-        lookUpPosition = context.ReadValue<Vector2>().y;
+        float newLookUp = context.ReadValue<Vector2>().y;
+        if (newLookUp != lookUpPosition)
+        {
+            PlayerEvents.OnPlayerVerticalFacing.Invoke(newLookUp);
+            lookUpPosition = newLookUp;
+        }
     }
 
     public void jump(InputAction.CallbackContext context)
@@ -368,6 +377,11 @@ public class PlayerMovementRays : MonoBehaviour
     public float getLook()
     {
         return this.lookUpPosition;
+    }
+
+    public Vector2 GetFacingDirection()
+    {
+        return new Vector2(facingRight ? 1 : -1, lookUpPosition);
     }
 
     public void Heal(InputAction.CallbackContext context)

@@ -6,25 +6,11 @@ using UnityEngine.InputSystem;
 public class Combat : MonoBehaviour
 {
     public PlayerMovementRays playerMovementScript;
+    private bool facingRight;
 
     [Header("Attack")]
-    public GameObject attackBox;
-    public GameObject player;
-    public float timeAttack = 0.2f;
-    public float cooldownAttack = 0.3f;
+    public float pogoPower;
     private bool isAttackOnCooldown;
-    [SerializeField] private float pogoPower;
-    private float offsetPlayerSizeX;
-    private float offsetPlayerSizeY;
-    private bool facingRight;
-    private bool allowChangeFacing;
-    private float lookUpPos;
-    private float valueX;
-    private float valueY;
-    private float boxOffsetY;
-    private float height;
-    Collider2D attackCollider;
-    SpriteRenderer attackRenderer;
 
     [Header("Fireball")]
     public Transform fireballSpawn;
@@ -40,96 +26,28 @@ public class Combat : MonoBehaviour
     private Coroutine chargedCoroutine;
     private bool hasReducedSpeed = false;
 
+    private void Awake()
+    {
+        PlayerEvents.OnPlayerAttack.AddListener(UpdateOnAttack);
+        PlayerEvents.OnPlayerCanAttack.AddListener(UpdateOnCanAttack);
+    }
 
     private void Start()
     {
-
-        BoxCollider2D col = player.GetComponent<BoxCollider2D>();
-        attackRenderer = attackBox.GetComponent<SpriteRenderer>();
-        attackCollider = attackBox.GetComponent<Collider2D>();
-        isAttackOnCooldown = false;
-        allowChangeFacing = true;
-        offsetPlayerSizeX = col.size.x * 1.5f;
-        offsetPlayerSizeY = col.size.y;
-        boxOffsetY = col.offset.y;
-        height = attackBox.transform.localPosition.y;
+        facingRight = playerMovementScript.getFacing();
     }
 
     private void Update()
     {
-        if (allowChangeFacing)
-        {
-            lookUpPos = playerMovementScript.getLook();
-            facingRight = playerMovementScript.getFacing();
-            Quaternion rot = Quaternion.identity;
-            if (lookUpPos > 0f)
-            {
-                attackRenderer.flipX = false;
-                if (!facingRight)
-                    attackRenderer.flipY = true;
-                valueX = 0f;
-                valueY = offsetPlayerSizeY + boxOffsetY;
-                rot = Quaternion.Euler(0, 0, 90);
-            }
-            else if(lookUpPos < 0f)
-            {
-                if (playerMovementScript.isGrounded())
-                {
-                    lookUpPos = 0f; 
-                }
-                else
-                {
-                    attackRenderer.flipX = false;
-                    if (!facingRight)
-                        attackRenderer.flipY = true;
-                    valueX = 0f;
-                    valueY = -offsetPlayerSizeY + boxOffsetY;
-                    rot = Quaternion.Euler(0, 0, -90);
-                }
-            }
-            if(lookUpPos == 0f)
-            {
-                attackRenderer.flipY = false;
-                valueY = height;
-                if (facingRight)
-                {
-                    valueX = offsetPlayerSizeX;
-                    attackRenderer.flipX = false;
-                }
-                else
-                {
-                    valueX = -offsetPlayerSizeX;
-                    attackRenderer.flipX = true;
-                }
-            }
-
-            if (facingRight)
-            {
-                chargedAnimator.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            } else
-            {
-                chargedAnimator.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-
-            attackBox.transform.localPosition = new Vector3(valueX, valueY, 0);
-            attackBox.transform.localRotation = rot;
-        }
     }
 
-
-    private IEnumerator ToggleAttack()
+    private void UpdateOnAttack(PlayerEvents.Attack attack)
     {
         isAttackOnCooldown = true;
-        allowChangeFacing = false;
-        attackRenderer.enabled = true;
-        attackCollider.enabled = true;
+    }
 
-        yield return new WaitForSeconds(timeAttack);
-        attackRenderer.enabled = false;
-        attackCollider.enabled = false;
-
-        yield return new WaitForSeconds(cooldownAttack);
-        allowChangeFacing = true;
+    private void UpdateOnCanAttack()
+    {
         isAttackOnCooldown = false;
     }
 
@@ -139,7 +57,9 @@ public class Combat : MonoBehaviour
         {
             if (!isAttackOnCooldown)
             {
-                StartCoroutine(ToggleAttack());
+                PlayerEvents.Attack attack = new PlayerEvents.Attack();
+                attack.direction = playerMovementScript.GetFacingDirection();
+                PlayerEvents.OnPlayerAttack.Invoke(attack);
             }
         } 
     }
@@ -147,7 +67,6 @@ public class Combat : MonoBehaviour
     private IEnumerator ToggleFireball()
     {
         isFireballOnCooldown = true;
-        allowChangeFacing = false;
         Vector3 position = new Vector3(
             facingRight ? fireballSpawn.position.x : fireballSpawn.position.x - 2*fireballSpawn.localPosition.x,
             fireballSpawn.position.y,
@@ -159,7 +78,6 @@ public class Combat : MonoBehaviour
         VitalEnergyManager.instance.RemoveTime(fireballVitalEnergyCost);
 
         yield return new WaitForSeconds(cooldownFireball);
-        allowChangeFacing = true;
         isFireballOnCooldown = false;
     }
 
@@ -212,7 +130,7 @@ public class Combat : MonoBehaviour
 
     public void DealAttackDamage(GameObject reciever)
     {
-        if (lookUpPos < 0f)
+        if (playerMovementScript.getLook() < 0f)
         {
             playerMovementScript.JumpAction(pogoPower);
         }
