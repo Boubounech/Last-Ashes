@@ -7,23 +7,13 @@ public class Combat : MonoBehaviour
 {
     public PlayerMovementRays playerMovementScript;
 
-    [Header("Sword")]
+    [Header("Attack")]
     public GameObject attackBox;
     public GameObject player;
     public float timeAttack = 0.2f;
     public float cooldownAttack = 0.3f;
     private bool isAttackOnCooldown;
-
-    [Header("Fireball")]
-    public Transform fireballSpawn;
-    public GameObject fireballPrefab;
-    public float cooldownFireball = 0.4f;
-    private bool isFireballOnCooldown;
-    public float fireballVitalEnergyCost = 10;
-
-    Collider2D attackCollider;
-    SpriteRenderer attackRenderer;
-
+    [SerializeField] private float pogoPower;
     private float offsetPlayerSizeX;
     private float offsetPlayerSizeY;
     private bool facingRight;
@@ -33,7 +23,22 @@ public class Combat : MonoBehaviour
     private float valueY;
     private float boxOffsetY;
     private float height;
-    [SerializeField] private float pogoPower;
+    Collider2D attackCollider;
+    SpriteRenderer attackRenderer;
+
+    [Header("Fireball")]
+    public Transform fireballSpawn;
+    public GameObject fireballPrefab;
+    public float cooldownFireball = 0.4f;
+    private bool isFireballOnCooldown;
+    public float fireballVitalEnergyCost = 10;
+
+    [Header("ChargedAttack")]
+    public Animator chargedAnimator;
+    public float chargeTime;
+    public float impactTime;
+    private Coroutine chargedCoroutine;
+    private bool hasReducedSpeed = false;
 
 
     private void Start()
@@ -98,6 +103,14 @@ public class Combat : MonoBehaviour
                 }
             }
 
+            if (facingRight)
+            {
+                chargedAnimator.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            } else
+            {
+                chargedAnimator.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+
             attackBox.transform.localPosition = new Vector3(valueX, valueY, 0);
             attackBox.transform.localRotation = rot;
         }
@@ -128,7 +141,7 @@ public class Combat : MonoBehaviour
             {
                 StartCoroutine(ToggleAttack());
             }
-        }
+        } 
     }
 
     private IEnumerator ToggleFireball()
@@ -159,6 +172,41 @@ public class Combat : MonoBehaviour
                 StartCoroutine(ToggleFireball());
             }
 
+        }
+    }
+
+    private IEnumerator ToggleChargedAttack()
+    {
+        playerMovementScript.speedModifier *= 0.5f;
+        hasReducedSpeed = true;
+        yield return new WaitForSeconds(chargeTime);
+        playerMovementScript.speedModifier *= 2f;
+        hasReducedSpeed = false;
+        playerMovementScript.DisableMovement();
+        yield return new WaitForSeconds(impactTime);
+        playerMovementScript.EnableMovement();
+        chargedAnimator.SetBool("Charging", false);
+    }
+
+    public void ChargedAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            chargedCoroutine = StartCoroutine(ToggleChargedAttack());
+            chargedAnimator.SetBool("Charging", true);
+        }
+        else if (context.canceled)
+        {
+            if (chargedCoroutine != null)
+            {
+                StopCoroutine(chargedCoroutine);
+                if (hasReducedSpeed)
+                {
+                    playerMovementScript.speedModifier *= 2f;
+                }
+                playerMovementScript.EnableMovement();
+            }
+            chargedAnimator.SetBool("Charging", false);
         }
     }
 

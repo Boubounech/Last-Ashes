@@ -14,6 +14,7 @@ public class PlayerMovementRays : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
+    public float speedModifier = 1f;
     private float lookUpPosition;
     private float horizontalMovement;
     private float wantedHorizontalMovement;
@@ -167,7 +168,7 @@ public class PlayerMovementRays : MonoBehaviour
 
         if (allowChangeOrientation)
         {
-            xVelocity = horizontalMovement * speed;
+            xVelocity = horizontalMovement * speed * speedModifier;
         }
         else
         {
@@ -408,14 +409,15 @@ public class PlayerMovementRays : MonoBehaviour
         }
     }
 
-    private void EnableMovement()
+    public void EnableMovement()
     {
         hasControl = true;
         allowChangeOrientation = true;
     }
 
-    private void DisableMovement()
+    public void DisableMovement()
     {
+        rb.velocity = Vector2.zero;
         hasControl = false;
         allowChangeOrientation = false;
     }
@@ -436,8 +438,8 @@ public class PlayerMovementRays : MonoBehaviour
     public void TakeControlAndMoveTo(Vector3 newPosition)
     {
         hasControl = false;
-        rb.velocity = new Vector2(Mathf.Sign(newPosition.x - transform.position.x) * speed, rb.velocity.y);
-        float timeToMove = Vector3.Distance(transform.position, newPosition) / speed;
+        rb.velocity = new Vector2(Mathf.Sign(newPosition.x - transform.position.x) * speed * speedModifier, rb.velocity.y);
+        float timeToMove = Vector3.Distance(transform.position, newPosition) / (speed *speedModifier);
         Invoke("AllowMovement", timeToMove);
     }
 
