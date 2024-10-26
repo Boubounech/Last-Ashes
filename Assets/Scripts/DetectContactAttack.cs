@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectContactAttack : MonoBehaviour
@@ -10,7 +8,7 @@ public class DetectContactAttack : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            combatScript.dealDamage(other.gameObject);
+            combatScript.DealAttackDamage(other.gameObject);
         }
     }
 }

@@ -6,8 +6,21 @@ using UnityEngine.InputSystem;
 public class Combat : MonoBehaviour
 {
     public PlayerMovementRays playerMovementScript;
+
+    [Header("Sword")]
     public GameObject attackBox;
     public GameObject player;
+    public float timeAttack = 0.2f;
+    public float cooldownAttack = 0.3f;
+    private bool isAttackOnCooldown;
+
+    [Header("Fireball")]
+    public Transform fireballSpawn;
+    public GameObject fireballPrefab;
+    public float cooldownFireball = 0.4f;
+    private bool isFireballOnCooldown;
+    public float fireballVitalEnergyCost = 10;
+
     Collider2D attackCollider;
     SpriteRenderer attackRenderer;
 
@@ -20,7 +33,6 @@ public class Combat : MonoBehaviour
     private float valueY;
     private float boxOffsetY;
     private float height;
-    private bool isOnCooldown;
     [SerializeField] private float pogoPower;
 
 
@@ -30,7 +42,7 @@ public class Combat : MonoBehaviour
         BoxCollider2D col = player.GetComponent<BoxCollider2D>();
         attackRenderer = attackBox.GetComponent<SpriteRenderer>();
         attackCollider = attackBox.GetComponent<Collider2D>();
-        isOnCooldown = false;
+        isAttackOnCooldown = false;
         allowChangeFacing = true;
         offsetPlayerSizeX = col.size.x * 1.5f;
         offsetPlayerSizeY = col.size.y;
@@ -94,33 +106,63 @@ public class Combat : MonoBehaviour
 
     private IEnumerator ToggleAttack()
     {
-        isOnCooldown = true;
+        isAttackOnCooldown = true;
         allowChangeFacing = false;
         attackRenderer.enabled = true;
         attackCollider.enabled = true;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(timeAttack);
         attackRenderer.enabled = false;
         attackCollider.enabled = false;
 
-
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(cooldownAttack);
         allowChangeFacing = true;
-        isOnCooldown = false;
+        isAttackOnCooldown = false;
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (!isOnCooldown)
+            if (!isAttackOnCooldown)
             {
                 StartCoroutine(ToggleAttack());
             }
         }
     }
 
-    public void dealDamage(GameObject reciever)
+    private IEnumerator ToggleFireball()
+    {
+        isFireballOnCooldown = true;
+        allowChangeFacing = false;
+        Vector3 position = new Vector3(
+            facingRight ? fireballSpawn.position.x : fireballSpawn.position.x - 2*fireballSpawn.localPosition.x,
+            fireballSpawn.position.y,
+            fireballSpawn.position.z);
+        Fireball fb = Instantiate(fireballPrefab, position, Quaternion.identity).GetComponent<Fireball>();
+        fb.SetDirection(facingRight ? Vector3.right : -Vector3.right);
+        fb.combatScript = this;
+
+        VitalEnergyManager.instance.RemoveTime(fireballVitalEnergyCost);
+
+        yield return new WaitForSeconds(cooldownFireball);
+        allowChangeFacing = true;
+        isFireballOnCooldown = false;
+    }
+
+    public void Fireball(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!isFireballOnCooldown)
+            {
+                StartCoroutine(ToggleFireball());
+            }
+
+        }
+    }
+
+    public void DealAttackDamage(GameObject reciever)
     {
         if (lookUpPos < 0f)
         {

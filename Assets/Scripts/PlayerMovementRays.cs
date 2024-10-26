@@ -232,11 +232,6 @@ public class PlayerMovementRays : MonoBehaviour
 
     public bool isGrounded()
     {
-        //Debug.DrawRay(rb.position, Vector2.down, Color.green, shortestDistToGround);
-        //Debug.DrawRay(rb.position + rightOffset, Vector2.down, Color.green, shortestDistToGround);
-        //Debug.DrawRay(rb.position - rightOffset, Vector2.down, Color.green, shortestDistToGround);
-        //Debug.DrawRay(rb.position + farRightOffset, Vector2.down, Color.green, shortestDistToGround);
-        //Debug.DrawRay(rb.position - farRightOffset, Vector2.down, Color.green, shortestDistToGround);
         bool i =
             Physics2D.Raycast(rb.position, Vector2.down, shortestDistToGround, groundLayer).collider != null
             || Physics2D.Raycast(rb.position + rightOffset, Vector2.down, shortestDistToGround, groundLayer).collider != null
