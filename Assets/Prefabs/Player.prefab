@@ -401,9 +401,37 @@ MonoBehaviour:
     m_ActionId: 25296882-ec55-4693-8e50-9e1ac4141a1d
     m_ActionName: Game/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 539857932514570527}
+        m_TargetAssemblyTypeName: PlayerMovementRays, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: adc8c7fb-c7c0-42a4-b883-6f44da338fe3
     m_ActionName: Game/Heal[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 539857932514570527}
+        m_TargetAssemblyTypeName: PlayerMovementRays, Assembly-CSharp
+        m_MethodName: UseCampfire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5c4f8dc5-1430-48cd-aad7-d0586b498335
+    m_ActionName: Game/Use[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player
   m_DefaultActionMap: Game
@@ -562,7 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7919280664799506115}
   - component: {fileID: 5974504582494385877}
-  - component: {fileID: 3334773775790605417}
+  - component: {fileID: 5907276928892465083}
   - component: {fileID: 4488119689212883409}
   m_Layer: 9
   m_Name: AttackBox
@@ -580,8 +608,8 @@ Transform:
   m_GameObject: {fileID: 3626167750090349273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.90000004, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.2, y: 0.8, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7940454731106881613}
@@ -593,7 +621,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3626167750090349273}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -627,8 +655,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.019995866, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 942bdf864493e2343b0c9d6613cd6895, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -638,8 +666,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3334773775790605417
-BoxCollider2D:
+--- !u!60 &5907276928892465083
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -674,15 +702,25 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.65764624, y: 1.1022164}
+      - {x: -1.4577011, y: 0.8492545}
+      - {x: -1.1532929, y: 0.03997203}
+      - {x: -2.183791, y: -0.59911764}
+      - {x: -0.9605471, y: -1.0665631}
+      - {x: 1.1943951, y: -0.7686593}
+      - {x: 2.463123, y: -0.112724744}
+      - {x: 2.537532, y: 0.24902752}
+      - {x: 1.748446, y: 0.71390086}
+      - {x: 0.65059686, y: 1.0715718}
+  m_UseDelaunayMesh: 0
 --- !u!114 &4488119689212883409
 MonoBehaviour:
   m_ObjectHideFlags: 0

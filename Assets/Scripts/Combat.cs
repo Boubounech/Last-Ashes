@@ -8,7 +8,7 @@ public class Combat : MonoBehaviour
     public PlayerMovementRays playerMovementScript;
     public GameObject attackBox;
     public GameObject player;
-    BoxCollider2D attackCollider;
+    Collider2D attackCollider;
     SpriteRenderer attackRenderer;
 
     private float offsetPlayerSizeX;
@@ -19,6 +19,7 @@ public class Combat : MonoBehaviour
     private float valueX;
     private float valueY;
     private float boxOffsetY;
+    private float height;
     private bool isOnCooldown;
     [SerializeField] private float pogoPower;
 
@@ -28,12 +29,13 @@ public class Combat : MonoBehaviour
 
         BoxCollider2D col = player.GetComponent<BoxCollider2D>();
         attackRenderer = attackBox.GetComponent<SpriteRenderer>();
-        attackCollider = attackBox.GetComponent<BoxCollider2D>();
+        attackCollider = attackBox.GetComponent<Collider2D>();
         isOnCooldown = false;
         allowChangeFacing = true;
         offsetPlayerSizeX = col.size.x * 1.5f;
         offsetPlayerSizeY = col.size.y;
         boxOffsetY = col.offset.y;
+        height = attackBox.transform.localPosition.y;
     }
 
     private void Update()
@@ -42,10 +44,15 @@ public class Combat : MonoBehaviour
         {
             lookUpPos = playerMovementScript.getLook();
             facingRight = playerMovementScript.getFacing();
+            Quaternion rot = Quaternion.identity;
             if (lookUpPos > 0f)
             {
+                attackRenderer.flipX = false;
+                if (!facingRight)
+                    attackRenderer.flipY = true;
                 valueX = 0f;
                 valueY = offsetPlayerSizeY + boxOffsetY;
+                rot = Quaternion.Euler(0, 0, 90);
             }
             else if(lookUpPos < 0f)
             {
@@ -55,13 +62,18 @@ public class Combat : MonoBehaviour
                 }
                 else
                 {
+                    attackRenderer.flipX = false;
+                    if (!facingRight)
+                        attackRenderer.flipY = true;
                     valueX = 0f;
                     valueY = -offsetPlayerSizeY + boxOffsetY;
+                    rot = Quaternion.Euler(0, 0, -90);
                 }
             }
             if(lookUpPos == 0f)
             {
-                valueY = 0.5f;
+                attackRenderer.flipY = false;
+                valueY = height;
                 if (facingRight)
                 {
                     valueX = offsetPlayerSizeX;
@@ -75,6 +87,7 @@ public class Combat : MonoBehaviour
             }
 
             attackBox.transform.localPosition = new Vector3(valueX, valueY, 0);
+            attackBox.transform.localRotation = rot;
         }
     }
 
