@@ -400,6 +400,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 25296882-ec55-4693-8e50-9e1ac4141a1d
     m_ActionName: Game/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: adc8c7fb-c7c0-42a4-b883-6f44da338fe3
+    m_ActionName: Game/Heal[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player
   m_DefaultActionMap: Game
@@ -445,6 +449,9 @@ MonoBehaviour:
   allowWallJump: 1
   timerChangeOrientation: 0.1
   slideSpeed: 2
+  timeToHeal: 2
+  healActionVitalEnergyCost: 30
+  detectCampfireScript: {fileID: 3939712256275182993}
 --- !u!114 &3102706042425436854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,6 +791,7 @@ GameObject:
   - component: {fileID: 842769586994141388}
   - component: {fileID: 8743345766238554130}
   - component: {fileID: 6969544605173212035}
+  - component: {fileID: 3939712256275182993}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -864,8 +872,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invicibilityTime: 1.5
-  damageKnockbackPower: 400
+  damageKnockbackPower: 300
   playerMovementScript: {fileID: 539857932514570527}
+--- !u!114 &3939712256275182993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485048030677947777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a32ace9033f840459b8eb3d24d8ba74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6186593872726181040
 GameObject:
   m_ObjectHideFlags: 0
