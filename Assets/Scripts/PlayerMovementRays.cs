@@ -112,6 +112,7 @@ public class PlayerMovementRays : MonoBehaviour
                 rb.gravityScale = 0;
                 setWantsToDashTo(false);
                 StartCoroutine(dashCoroutine());
+                PlayerEvents.OnPlayerDash.Invoke();
             }
 
             if (!allowDash || !isDashing)

@@ -10,6 +10,7 @@ public static class PlayerEvents
     // ################
     public static UnityEvent<float> OnPlayerHorizontalFacing = new UnityEvent<float>();
     public static UnityEvent<float> OnPlayerVerticalFacing = new UnityEvent<float>();
+    public static UnityEvent OnPlayerDash = new UnityEvent();
 
     // ################
     // #    ATTACK    #

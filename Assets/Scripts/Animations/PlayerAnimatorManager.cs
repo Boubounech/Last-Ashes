@@ -9,6 +9,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     {
         PlayerEvents.OnPlayerAttack.AddListener(HideBasicSword);
         PlayerEvents.OnPlayerFinishAttack.AddListener(ShowBasicSword);
+        PlayerEvents.OnPlayerDash.AddListener(Dash);
     }
 
     private void Start()
@@ -24,5 +25,10 @@ public class PlayerAnimatorManager : MonoBehaviour
     public void ShowBasicSword()
     {
         swordRenderer.enabled = true;
+    }
+
+    private void Dash()
+    {
+        animator.SetTrigger("Dash");
     }
 }
