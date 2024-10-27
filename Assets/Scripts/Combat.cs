@@ -44,9 +44,6 @@ public class Combat : MonoBehaviour
             playerMovementScript.speedModifier *= 2f;
         });
         PlayerEvents.OnPlayerChargeChargeAttack.AddListener (delegate { isCharged = true; });
-
-        // On hit
-        PlayerEvents.OnPlayerHitDamageable.AddListener(delegate { Debug.LogWarning("To implement based on AttackHit structure"); });
     }
 
     private void Start()
@@ -97,12 +94,11 @@ public class Combat : MonoBehaviour
         }
     }
 
-    public void DealAttackDamage(GameObject reciever)
+    public void PogoOnDamage()
     {
         if (playerMovementScript.getLook() < 0f)
         {
             playerMovementScript.JumpAction(pogoPower);
         }
-        Destroy(reciever);
     }
 }

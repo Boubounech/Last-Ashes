@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatScript: {fileID: 3102706042425436854}
+  attackDamage: 3
 --- !u!114 &1327478739173208887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,9 +831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementScript: {fileID: 539857932514570527}
   pogoPower: 600
-  chargedAnimator: {fileID: 1773962520733606789}
-  chargeTime: 1.4
-  impactTime: 0.6
 --- !u!1 &3438266269082504588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatScript: {fileID: 3102706042425436854}
+  attackDamage: 1
 --- !u!95 &8147792134436235954
 Animator:
   serializedVersion: 5

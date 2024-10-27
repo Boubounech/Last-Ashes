@@ -8,6 +8,7 @@ public class Fireball : MonoBehaviour
     private Vector3 direction = new Vector3(1, 0, 0);
     public float aliveTime = 1f;
     public Combat combatScript;
+    [SerializeField] private float fireballDamage;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            PlayerEvents.OnPlayerHitDamageable.Invoke();
+            PlayerEvents.OnPlayerHitDamageable.Invoke(fireballDamage);
         }
     }
 }

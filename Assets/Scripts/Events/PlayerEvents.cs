@@ -37,5 +37,5 @@ public static class PlayerEvents
 
 
     // Hit something
-    public static UnityEvent OnPlayerHitDamageable = new UnityEvent();
+    public static UnityEvent<float> OnPlayerHitDamageable = new UnityEvent<float>();
 }
