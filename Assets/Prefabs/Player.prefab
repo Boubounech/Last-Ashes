@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7440864732567895703}
   - component: {fileID: 1773962520733606789}
   - component: {fileID: 8649307148188999382}
+  - component: {fileID: 1327478739173208887}
   m_Layer: 9
   m_Name: ChargedAttack
   m_TagString: Untagged
@@ -120,6 +121,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatScript: {fileID: 3102706042425436854}
+--- !u!114 &1327478739173208887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92067310102014865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1d04b6106708542a27377f95f5a3bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1215772729722381996
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1934881389006921720
 Transform:
   m_ObjectHideFlags: 0
@@ -816,15 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovementScript: {fileID: 539857932514570527}
-  attackBox: {fileID: 3626167750090349273}
-  player: {fileID: 2370407995996683934}
-  timeAttack: 0.2
-  cooldownAttack: 0.3
   pogoPower: 600
-  fireballSpawn: {fileID: 2731535541822443243}
-  fireballPrefab: {fileID: 6281480319998224737, guid: 09a4c3e6b8a2e5740ae8fa1f941571e6, type: 3}
-  cooldownFireball: 0.6
-  fireballVitalEnergyCost: 10
   chargedAnimator: {fileID: 1773962520733606789}
   chargeTime: 1.4
   impactTime: 0.6
@@ -955,7 +960,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3626167750090349273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1245,8 +1250,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2731535541822443243}
+  - component: {fileID: 917536134626884778}
   m_Layer: 0
-  m_Name: FireballSpawn
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1267,6 +1273,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7940454731106881613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917536134626884778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932680353098953525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cdab74dfc8db54893e42028309ed20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 6281480319998224737, guid: 09a4c3e6b8a2e5740ae8fa1f941571e6, type: 3}
+  cooldownFireball: 0.4
+  fireballVitalEnergyCost: 10
 --- !u!1 &6186593872726181040
 GameObject:
   m_ObjectHideFlags: 0

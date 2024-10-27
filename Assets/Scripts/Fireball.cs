@@ -37,7 +37,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            combatScript.DealAttackDamage(other.gameObject);
+            PlayerEvents.OnPlayerHitDamageable.Invoke();
         }
     }
 }

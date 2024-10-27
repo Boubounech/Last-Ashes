@@ -8,6 +8,7 @@ public class DetectContactAttack : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            PlayerEvents.OnPlayerHitDamageable.Invoke();
             combatScript.DealAttackDamage(other.gameObject);
         }
     }

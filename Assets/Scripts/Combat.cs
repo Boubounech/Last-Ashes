@@ -9,46 +9,49 @@ public class Combat : MonoBehaviour
     private bool facingRight;
 
     [Header("Attack")]
-    public float pogoPower;
+    public float pogoPower; // To check on OnPlayerHitDamageable
     private bool isAttackOnCooldown;
 
     [Header("Fireball")]
-    public Transform fireballSpawn;
-    public GameObject fireballPrefab;
-    public float cooldownFireball = 0.4f;
     private bool isFireballOnCooldown;
-    public float fireballVitalEnergyCost = 10;
 
     [Header("ChargedAttack")]
-    public Animator chargedAnimator;
-    public float chargeTime;
-    public float impactTime;
-    private Coroutine chargedCoroutine;
-    private bool hasReducedSpeed = false;
+    private bool isChargingAttack = false;
+    private bool isCharged = false;
 
     private void Awake()
     {
-        PlayerEvents.OnPlayerAttack.AddListener(UpdateOnAttack);
-        PlayerEvents.OnPlayerCanAttack.AddListener(UpdateOnCanAttack);
+        // Attack
+        PlayerEvents.OnPlayerAttack.AddListener(delegate { isAttackOnCooldown = true; });
+        PlayerEvents.OnPlayerCanAttack.AddListener(delegate { isAttackOnCooldown = false; });
+
+        // Fireball
+        PlayerEvents.OnPlayerLaunchFireball.AddListener(delegate { isFireballOnCooldown = true; });
+        PlayerEvents.OnPlayerCanLaunchFireball.AddListener(delegate { isFireballOnCooldown = false; });
+
+        // Charged Attack
+        PlayerEvents.OnPlayerChargeAttack.AddListener(delegate { 
+            isChargingAttack = true;
+            playerMovementScript.speedModifier *= 0.5f;
+        });
+        PlayerEvents.OnPlayerInterruptChargeAttack.AddListener(delegate { 
+            isChargingAttack = false;
+            playerMovementScript.speedModifier *= 2f;
+        });
+        PlayerEvents.OnPlayerFinishChargeAttack.AddListener(delegate { 
+            isChargingAttack = false; 
+            isCharged = false;
+            playerMovementScript.speedModifier *= 2f;
+        });
+        PlayerEvents.OnPlayerChargeChargeAttack.AddListener (delegate { isCharged = true; });
+
+        // On hit
+        PlayerEvents.OnPlayerHitDamageable.AddListener(delegate { Debug.LogWarning("To implement based on AttackHit structure"); });
     }
 
     private void Start()
     {
         facingRight = playerMovementScript.getFacing();
-    }
-
-    private void Update()
-    {
-    }
-
-    private void UpdateOnAttack(PlayerEvents.Attack attack)
-    {
-        isAttackOnCooldown = true;
-    }
-
-    private void UpdateOnCanAttack()
-    {
-        isAttackOnCooldown = false;
     }
 
     public void Attack(InputAction.CallbackContext context)
@@ -64,67 +67,33 @@ public class Combat : MonoBehaviour
         } 
     }
 
-    private IEnumerator ToggleFireball()
-    {
-        isFireballOnCooldown = true;
-        Vector3 position = new Vector3(
-            facingRight ? fireballSpawn.position.x : fireballSpawn.position.x - 2*fireballSpawn.localPosition.x,
-            fireballSpawn.position.y,
-            fireballSpawn.position.z);
-        Fireball fb = Instantiate(fireballPrefab, position, Quaternion.identity).GetComponent<Fireball>();
-        fb.SetDirection(facingRight ? Vector3.right : -Vector3.right);
-        fb.combatScript = this;
-
-        VitalEnergyManager.instance.RemoveTime(fireballVitalEnergyCost);
-
-        yield return new WaitForSeconds(cooldownFireball);
-        isFireballOnCooldown = false;
-    }
-
     public void Fireball(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             if (!isFireballOnCooldown)
             {
-                StartCoroutine(ToggleFireball());
+                PlayerEvents.OnPlayerLaunchFireball.Invoke(playerMovementScript.getFacing() ? 1 : -1);
             }
 
         }
-    }
-
-    private IEnumerator ToggleChargedAttack()
-    {
-        playerMovementScript.speedModifier *= 0.5f;
-        hasReducedSpeed = true;
-        yield return new WaitForSeconds(chargeTime);
-        playerMovementScript.speedModifier *= 2f;
-        hasReducedSpeed = false;
-        playerMovementScript.DisableMovement();
-        yield return new WaitForSeconds(impactTime);
-        playerMovementScript.EnableMovement();
-        chargedAnimator.SetBool("Charging", false);
     }
 
     public void ChargedAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            chargedCoroutine = StartCoroutine(ToggleChargedAttack());
-            chargedAnimator.SetBool("Charging", true);
+            PlayerEvents.OnPlayerChargeAttack.Invoke(playerMovementScript.getFacing() ? 1 : -1);
         }
         else if (context.canceled)
         {
-            if (chargedCoroutine != null)
+            if (isCharged)
             {
-                StopCoroutine(chargedCoroutine);
-                if (hasReducedSpeed)
-                {
-                    playerMovementScript.speedModifier *= 2f;
-                }
-                playerMovementScript.EnableMovement();
+                PlayerEvents.OnPlayerReleaseChargeAttack.Invoke();
+            } else if (isChargingAttack)
+            {
+                PlayerEvents.OnPlayerInterruptChargeAttack.Invoke();
             }
-            chargedAnimator.SetBool("Charging", false);
         }
     }
 
@@ -136,6 +105,4 @@ public class Combat : MonoBehaviour
         }
         Destroy(reciever);
     }
-
-    
 }
