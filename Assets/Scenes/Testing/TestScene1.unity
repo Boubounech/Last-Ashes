@@ -740,6 +740,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &169018243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 539857932514570527, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+  m_PrefabInstance: {fileID: 1629298057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc01d6faa04ec24ca805d78163d1cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &221508685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,9 +3362,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 353163786436264501, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887243210061505138, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: explosionTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2370407995996683934, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618066350573516376, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375590857175674549, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_Name
+      value: RenderPlaceholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488119689212883409, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: enablePogo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615706035251612812, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_Name
+      value: Dive
       objectReference: {fileID: 0}
     - target: {fileID: 7940454731106881613, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3394,6 +3429,42 @@ PrefabInstance:
     - target: {fileID: 7940454731106881613, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 169018243}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GroundDive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovementRays, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243315673472420218, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447422297614725162, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549615775568669688, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

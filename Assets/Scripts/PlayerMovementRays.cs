@@ -30,6 +30,8 @@ public class PlayerMovementRays : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool hasAlreadyJump = false;
     [SerializeField] private float airZone = 0.5f;
+    [SerializeField] private bool allowJump = true;
+
 
     [Header("Double Jump")]
     [SerializeField] private bool allowDoubleJump = true;
@@ -68,7 +70,9 @@ public class PlayerMovementRays : MonoBehaviour
     [Header("Campfire")]
     [SerializeField] private DetectCampfire detectCampfireScript;
 
-
+    [Header("Dive")]
+    [SerializeField] private float multVitalEnergyCost;
+    [SerializeField] private float explosionVitalEnergyCost;
 
     private Rigidbody2D rb;
     private BoxCollider2D col;
@@ -81,9 +85,21 @@ public class PlayerMovementRays : MonoBehaviour
 
     public UnityAction OnPlayerRegainControl;
 
+    
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        PlayerEvents.OnPlayerDive.AddListener(delegate {
+            allowDash = false;
+            allowJump = false;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        });
+        PlayerEvents.OnPlayerDiveEnd.AddListener(delegate {
+            allowDash = true;
+            allowJump = true;
+            rb.constraints = RigidbodyConstraints2D.None;
+        });
     }
 
     private void Start()
@@ -124,7 +140,7 @@ public class PlayerMovementRays : MonoBehaviour
                     rb.AddForce(Vector2.up * jumpHoldPower);
                     jumpHoldTimer += Time.fixedDeltaTime;
                 }
-                else if (wantsToJump && (isGrounded() || (isAgainstWall() && allowWallJump)))
+                else if (wantsToJump && (isGrounded() || (isAgainstWall() && allowWallJump)) && allowJump)
                 {
                     if (!hasAlreadyJump)
                     {
@@ -134,7 +150,7 @@ public class PlayerMovementRays : MonoBehaviour
                         jumpHoldTimer = 0;
                     }
                 }
-                else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce && hasCanceledOnce && !isTooNearToDJ())
+                else if (allowDoubleJump && wantsToJump && canDoubleJump && hasJumpedOnce && hasCanceledOnce && !isTooNearToDJ() && allowJump)
                 {
                     jumpHoldTimer += maxJumpHoldTime;
                     canDoubleJump = false;
@@ -449,6 +465,23 @@ public class PlayerMovementRays : MonoBehaviour
         }
     }
 
+    public void GroundDive(InputAction.CallbackContext context)
+    {
+        if (isGrounded())
+        {
+            if (context.performed)
+            {
+                PlayerEvents.OnPlayerDive.Invoke();
+                VitalEnergyManager.instance.ChangeSpeedTimer(multVitalEnergyCost);
+            }
+            else if (context.canceled)
+            {
+                PlayerEvents.OnPlayerDiveEnd.Invoke();
+                VitalEnergyManager.instance.ChangeSpeedTimer(1);
+                VitalEnergyManager.instance.RemoveTime(explosionVitalEnergyCost);
+            }
+        }
+    }
 
     public void TakeControlAndMoveTo(Vector3 newPosition)
     {
@@ -457,6 +490,7 @@ public class PlayerMovementRays : MonoBehaviour
         float timeToMove = Vector3.Distance(transform.position, newPosition) / (speed *speedModifier);
         Invoke("AllowMovement", timeToMove);
     }
+ 
 
     private void AllowMovement()
     {
