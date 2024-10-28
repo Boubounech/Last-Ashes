@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=0.2)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dive",
+                    "type": "Button",
+                    "id": "2b39051c-8bc1-4cc0-9869-4cd9f0c8bfe4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -208,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChargedAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a13cf21-efc3-4503-abf1-75a022a0906b",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "Dive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
