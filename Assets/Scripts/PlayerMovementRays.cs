@@ -73,6 +73,8 @@ public class PlayerMovementRays : MonoBehaviour
     [Header("Dive")]
     [SerializeField] private float multVitalEnergyCost;
     [SerializeField] private float explosionVitalEnergyCost;
+    private bool canDive = true;
+    private bool canEndDive = false;
 
     private Rigidbody2D rb;
     private BoxCollider2D col;
@@ -93,13 +95,19 @@ public class PlayerMovementRays : MonoBehaviour
         PlayerEvents.OnPlayerDive.AddListener(delegate {
             allowDash = false;
             allowJump = false;
+
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         });
         PlayerEvents.OnPlayerDiveEnd.AddListener(delegate {
             allowDash = true;
             allowJump = true;
+            canDive = false;
             rb.constraints = RigidbodyConstraints2D.None;
         });
+        PlayerEvents.OnPlayerCanDive.AddListener(delegate {
+            canDive = true;
+        });
+
     }
 
     private void Start()
@@ -467,18 +475,20 @@ public class PlayerMovementRays : MonoBehaviour
 
     public void GroundDive(InputAction.CallbackContext context)
     {
-        if (isGrounded())
+        if (isGrounded() && canDive)
         {
             if (context.performed)
             {
                 PlayerEvents.OnPlayerDive.Invoke();
                 VitalEnergyManager.instance.ChangeSpeedTimer(multVitalEnergyCost);
+                canEndDive = true;
             }
-            else if (context.canceled)
+            else if (context.canceled && canEndDive)
             {
                 PlayerEvents.OnPlayerDiveEnd.Invoke();
                 VitalEnergyManager.instance.ChangeSpeedTimer(1);
                 VitalEnergyManager.instance.RemoveTime(explosionVitalEnergyCost);
+                canEndDive = false;
             }
         }
     }

@@ -39,6 +39,8 @@ public static class PlayerEvents
     //Dive
     public static UnityEvent OnPlayerDive = new UnityEvent();
     public static UnityEvent OnPlayerDiveEnd = new UnityEvent();
+    public static UnityEvent OnPlayerCanDive = new UnityEvent();
+
 
     // Hit something
     public static UnityEvent<float> OnPlayerHitDamageable = new UnityEvent<float>();

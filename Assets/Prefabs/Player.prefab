@@ -102,6 +102,8 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 3
   enablePogo: 0
+  enableKnockback: 0
+  knockbackStrength: 0
 --- !u!114 &1327478739173208887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +273,8 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 3
   enablePogo: 0
+  enableKnockback: 1
+  knockbackStrength: 0
 --- !u!1 &1215772729722381996
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +911,19 @@ MonoBehaviour:
     m_ActionId: c17ee850-a6cb-4e8d-9d7f-0ea6bb5c4519
     m_ActionName: Game/ChargedAttack[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 539857932514570527}
+        m_TargetAssemblyTypeName: PlayerMovementRays, Assembly-CSharp
+        m_MethodName: GroundDive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2b39051c-8bc1-4cc0-9869-4cd9f0c8bfe4
     m_ActionName: Game/Dive[/Keyboard/leftCtrl]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1163,6 +1179,8 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 1
   enablePogo: 1
+  enableKnockback: 0
+  knockbackStrength: 0
 --- !u!114 &2767861239924604308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1290,7 +1308,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6870080948872683721}
   - component: {fileID: 3618066350573516376}
-  m_Layer: 0
+  - component: {fileID: 7023768282135059465}
+  m_Layer: 11
   m_Name: RenderDivePlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1325,7 @@ Transform:
   m_GameObject: {fileID: 4375590857175674549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.211, z: 0}
+  m_LocalPosition: {x: -0.14, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1364,6 +1383,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7023768282135059465
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375590857175674549}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &4615706035251612812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,8 +1478,10 @@ MonoBehaviour:
   playerHitbox: {fileID: 8743345766238554130}
   playerColisionBox: {fileID: 8741661568396106523}
   playerRender: {fileID: 8549615775568669688}
-  diveRender: {fileID: 3618066350573516376}
+  diveRender: {fileID: 4375590857175674549}
   explosionTime: 0.1
+  invicibilityTime: 0.5
+  cooldownDive: 1
 --- !u!1 &5485048030677947777
 GameObject:
   m_ObjectHideFlags: 0

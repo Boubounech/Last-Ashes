@@ -15,6 +15,7 @@ public class DetectContactAttack : MonoBehaviour
             {
                 combatScript.PogoOnDamage();
             }
+
         }
     }
 }
