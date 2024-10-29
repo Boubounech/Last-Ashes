@@ -9,15 +9,19 @@ public class Combat : MonoBehaviour
     private bool facingRight;
 
     [Header("Attack")]
-    public float pogoPower; // To check on OnPlayerHitDamageable
+    public float pogoPower;
     private bool isAttackOnCooldown;
+    private bool canAttack = true;
 
     [Header("Fireball")]
     private bool isFireballOnCooldown;
+    private bool canFirball = true;
 
     [Header("ChargedAttack")]
     private bool isChargingAttack = false;
     private bool isCharged = false;
+    private bool canChargedAttack = true;
+    private bool canFinishChargedAttack = false;
 
     private void Awake()
     {
@@ -32,16 +36,33 @@ public class Combat : MonoBehaviour
         // Charged Attack
         PlayerEvents.OnPlayerChargeAttack.AddListener(delegate { 
             isChargingAttack = true;
-            playerMovementScript.speedModifier *= 0.5f;
+            playerMovementScript.speedModifier = 0.5f;
         });
         PlayerEvents.OnPlayerInterruptChargeAttack.AddListener(delegate { 
             isChargingAttack = false;
-            playerMovementScript.speedModifier *= 2f;
+            playerMovementScript.speedModifier = playerMovementScript.baseSpeeModifier;
         });
         PlayerEvents.OnPlayerFinishChargeAttack.AddListener(delegate { 
             isChargingAttack = false; 
             isCharged = false;
-            playerMovementScript.speedModifier *= 2f;
+            playerMovementScript.speedModifier = playerMovementScript.baseSpeeModifier;
+        });
+        PlayerEvents.OnPlayerDive.AddListener(delegate
+        {
+            canAttack = false;
+            canChargedAttack = false;
+            canFirball = false;
+            if(isChargingAttack)
+            {
+                PlayerEvents.OnPlayerInterruptChargeAttack.Invoke();
+            }
+            isCharged = false;
+        });
+        PlayerEvents.OnPlayerDiveEnd.AddListener(delegate
+        {
+            canAttack = true;
+            canChargedAttack = true;
+            canFirball = true;
         });
         PlayerEvents.OnPlayerChargeChargeAttack.AddListener (delegate { isCharged = true; });
     }
@@ -53,7 +74,7 @@ public class Combat : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canAttack)
         {
             if (!isAttackOnCooldown)
             {
@@ -66,7 +87,7 @@ public class Combat : MonoBehaviour
 
     public void Fireball(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canFirball)
         {
             if (!isFireballOnCooldown)
             {
@@ -78,11 +99,12 @@ public class Combat : MonoBehaviour
 
     public void ChargedAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canChargedAttack)
         {
             PlayerEvents.OnPlayerChargeAttack.Invoke(playerMovementScript.getFacing() ? 1 : -1);
+            canFinishChargedAttack = true; // pour éviter que l'on puisse finir sans l'avoir commencer (restriction a cause du dive)
         }
-        else if (context.canceled)
+        else if (context.canceled && canFinishChargedAttack) 
         {
             if (isCharged)
             {
@@ -91,6 +113,7 @@ public class Combat : MonoBehaviour
             {
                 PlayerEvents.OnPlayerInterruptChargeAttack.Invoke();
             }
+            canFinishChargedAttack = false;
         }
     }
 

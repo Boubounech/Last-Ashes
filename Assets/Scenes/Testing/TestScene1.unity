@@ -2149,6 +2149,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8759455603037618414, guid: 7ab4661af36ab674895eec823fb9d954, type: 3}
+      propertyPath: m_Mass
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3367,8 +3371,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 887243210061505138, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: cooldownDive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887243210061505138, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: explosionTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887243210061505138, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: invicibilityTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047571215738400941, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: attackDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047571215738400941, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: enableKnockback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047571215738400941, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
+      propertyPath: knockbackStrength
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2370407995996683934, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_Name
