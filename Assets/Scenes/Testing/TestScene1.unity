@@ -3408,7 +3408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4488119689212883409, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: enablePogo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4615706035251612812, guid: e6af80a7a0f785f43a860efa09a65022, type: 3}
       propertyPath: m_Name

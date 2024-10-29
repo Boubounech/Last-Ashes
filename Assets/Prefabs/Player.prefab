@@ -102,8 +102,6 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 3
   enablePogo: 0
-  enableKnockback: 0
-  knockbackStrength: 0
 --- !u!114 &1327478739173208887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,8 +271,6 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 3
   enablePogo: 0
-  enableKnockback: 1
-  knockbackStrength: 0
 --- !u!1 &1215772729722381996
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +944,7 @@ MonoBehaviour:
   hasControl: 1
   timerKnockbackDamage: 0.5
   speed: 8
+  baseSpeeModifier: 0
   speedModifier: 1
   jumpingPower: 600
   jumpHoldPower: 60
@@ -1179,8 +1176,6 @@ MonoBehaviour:
   combatScript: {fileID: 3102706042425436854}
   attackDamage: 1
   enablePogo: 1
-  enableKnockback: 0
-  knockbackStrength: 0
 --- !u!114 &2767861239924604308
 MonoBehaviour:
   m_ObjectHideFlags: 0
