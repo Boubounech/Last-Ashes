@@ -36,22 +36,27 @@ public class Combat : MonoBehaviour
         // Charged Attack
         PlayerEvents.OnPlayerChargeAttack.AddListener(delegate { 
             isChargingAttack = true;
-            playerMovementScript.speedModifier *= 0.5f;
+            playerMovementScript.speedModifier = 0.5f;
         });
         PlayerEvents.OnPlayerInterruptChargeAttack.AddListener(delegate { 
             isChargingAttack = false;
-            playerMovementScript.speedModifier *= 2f;
+            playerMovementScript.speedModifier = playerMovementScript.baseSpeeModifier;
         });
         PlayerEvents.OnPlayerFinishChargeAttack.AddListener(delegate { 
             isChargingAttack = false; 
             isCharged = false;
-            playerMovementScript.speedModifier *= 2f;
+            playerMovementScript.speedModifier = playerMovementScript.baseSpeeModifier;
         });
         PlayerEvents.OnPlayerDive.AddListener(delegate
         {
             canAttack = false;
             canChargedAttack = false;
             canFirball = false;
+            if(isChargingAttack)
+            {
+                PlayerEvents.OnPlayerInterruptChargeAttack.Invoke();
+            }
+            isCharged = false;
         });
         PlayerEvents.OnPlayerDiveEnd.AddListener(delegate
         {

@@ -14,6 +14,7 @@ public class PlayerMovementRays : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private float speed = 4f;
+    public float baseSpeeModifier;
     public float speedModifier = 1f;
     private float lookUpPosition;
     private float horizontalMovement;
@@ -120,6 +121,8 @@ public class PlayerMovementRays : MonoBehaviour
 
         upOffset = col.offset + new Vector2(0, col.size.y / 3f);
         downOffset = col.offset + new Vector2(0, - col.size.y / 3f);
+
+        baseSpeeModifier = speedModifier;
     }
 
     private void FixedUpdate()
