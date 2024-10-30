@@ -11123,7 +11123,7 @@ GameObject:
   - component: {fileID: 2731535541822443243}
   - component: {fileID: 917536134626884778}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: FireballLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
