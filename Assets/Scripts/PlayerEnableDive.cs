@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerEnableDive : MonoBehaviour
 {
-    public GameObject explosionHitbox;
     public BoxCollider2D playerHitbox;
     public BoxCollider2D playerColisionBox;
     public GameObject playerRender;
-    public GameObject diveRender;
+    public GameObject inDivePlayerRender;
 
-    [SerializeField] private float explosionTime;
+    public GameObject explosionPrefab;
+    public Combat combatScript;
+
     [SerializeField] private float invicibilityTime;
     [SerializeField] private float cooldownDive;
 
@@ -18,8 +19,7 @@ public class PlayerEnableDive : MonoBehaviour
     {
         PlayerEvents.OnPlayerDive.AddListener(StartDive);
         PlayerEvents.OnPlayerDiveEnd.AddListener(EndDive);
-        explosionHitbox.SetActive(false);
-        diveRender.SetActive(false);
+        inDivePlayerRender.SetActive(false);
     }
 
     public void StartDive()
@@ -27,7 +27,7 @@ public class PlayerEnableDive : MonoBehaviour
         playerHitbox.enabled = false;
         playerColisionBox.enabled = false;
         playerRender.SetActive(false);
-        diveRender.SetActive(true);
+        inDivePlayerRender.SetActive(true);
     }
 
     public void EndDive()
@@ -35,18 +35,12 @@ public class PlayerEnableDive : MonoBehaviour
 
         playerColisionBox.enabled = true;
         playerRender.SetActive(true);
-        diveRender.SetActive(false);
+        inDivePlayerRender.SetActive(false);
 
-        explosionHitbox.SetActive(true);
-        Invoke("RemoveExplosion", explosionTime);
+        DetectContactAttack explosionAttack = Instantiate(explosionPrefab, transform.position, Quaternion.identity).GetComponent<DetectContactAttack>();
+        explosionAttack.combatScript = combatScript;
         Invoke("RemoveInvicibility", invicibilityTime);
         Invoke("AllowDive", cooldownDive);
-
-    }
-
-    private void RemoveExplosion()
-    {
-        explosionHitbox.SetActive(false);
     }
 
     private void RemoveInvicibility()

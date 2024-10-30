@@ -2665,6 +2665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6243bb8fc8194841b8f5c711381dcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: Player
   transitionName: LeftBottom
   transition:
     toSceneName: TestScene1

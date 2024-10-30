@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class TransitionDetector : MonoBehaviour
 {
+    [SerializeField] private string playerTag;
     [SerializeField] public string transitionName;
     [SerializeField] private TransitionManager.Transition transition;
     [SerializeField] public Transform playerSpawnPoint;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TransitionManager.OnPlayerEnterTransition.Invoke(transition);
+        if (collision.gameObject.CompareTag(playerTag))
+        {
+            TransitionManager.OnPlayerEnterTransition.Invoke(transition);
+        }
     }
 }
