@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fc6be133b47d3b4483fbeb0e9032b36
+guid: d791167a1461c4049a3242ced522e3c7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: charged_attack_0
+      name: rocks_0
       rect:
         serializedVersion: 2
-        x: 156
-        y: 1743
-        width: 409
-        height: 190
+        x: 114
+        y: 1428
+        width: 481
+        height: 407
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fce37cdedf07754aa207abae5adb755
-      internalID: -1135095027
+      spriteID: fce7388cdb5af284d8f26dc27120fe68
+      internalID: -454203464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_1
+      name: rocks_1
       rect:
         serializedVersion: 2
-        x: 955
-        y: 1040
-        width: 790
-        height: 890
+        x: 731
+        y: 1434
+        width: 432
+        height: 303
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc00fccacfb397543b44899f2ab21d29
-      internalID: 1435999734
+      spriteID: 5b897a3b044b5024c8b20236ca144dae
+      internalID: 309183569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_2
+      name: rocks_2
       rect:
         serializedVersion: 2
-        x: 154
-        y: 1436
-        width: 440
-        height: 190
+        x: 1388
+        y: 1451
+        width: 506
+        height: 434
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba47538a1ca701f43bb288b7336c988d
-      internalID: -639038254
+      spriteID: 9b5084f881b028d4086009a13bb1a37f
+      internalID: 2144471350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_3
+      name: rocks_3
       rect:
         serializedVersion: 2
-        x: 157
-        y: 1143
+        x: 94
+        y: 711
         width: 459
-        height: 189
+        height: 553
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5eacfe5246a9b448fc70de94c476d5
-      internalID: 1399935305
+      spriteID: 52f2bdf62d33d3c4bb7beb37fa83c964
+      internalID: -36503661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_4
+      name: rocks_4
       rect:
         serializedVersion: 2
-        x: 1052
-        y: 52
-        width: 721
-        height: 897
+        x: 746
+        y: 744
+        width: 672
+        height: 269
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,8 +208,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2392c065f0a0891468234143770d6f16
-      internalID: -639084308
+      spriteID: 7e760eb7a1b057a4fb7c04a6cf66848f
+      internalID: -456381802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_5
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 765
+        width: 433
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0e495defa64e6e419904064731b7274
+      internalID: 371056458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_6
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 102
+        width: 400
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f3a51445bfbd340aff55fa5ce927d3
+      internalID: -2016642130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_7
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 108
+        width: 245
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd936a1c83df2c49a09757e8593f061
+      internalID: -551921181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_8
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 108
+        width: 172
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9c2282dcdf02a458ee11992f10028c
+      internalID: 1507445611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_9
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 115
+        width: 227
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3997791cc29040141a70eb7234909376
+      internalID: 923734629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_10
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 127
+        width: 201
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6566df954593f204d9aaaefa62a7b202
+      internalID: 1138578741
       vertices: []
       indices: 
       edges: []
@@ -225,11 +351,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      charged_attack_0: -1135095027
-      charged_attack_1: 1435999734
-      charged_attack_2: -639038254
-      charged_attack_3: 1399935305
-      charged_attack_4: -639084308
+      rocks_0: -454203464
+      rocks_1: 309183569
+      rocks_10: 1138578741
+      rocks_2: 2144471350
+      rocks_3: -36503661
+      rocks_4: -456381802
+      rocks_5: 371056458
+      rocks_6: -2016642130
+      rocks_7: -551921181
+      rocks_8: 1507445611
+      rocks_9: 923734629
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

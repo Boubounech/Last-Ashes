@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fc6be133b47d3b4483fbeb0e9032b36
+guid: 36e0c797760235840b438a93d00d9eef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,106 +110,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: charged_attack_0
+      name: sign_0
       rect:
         serializedVersion: 2
-        x: 156
-        y: 1743
-        width: 409
-        height: 190
+        x: 83
+        y: 71
+        width: 185
+        height: 785
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fce37cdedf07754aa207abae5adb755
-      internalID: -1135095027
+      spriteID: dba6191d708c16c43bda019d8fb914c7
+      internalID: 71902665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_1
+      name: sign_1
       rect:
         serializedVersion: 2
-        x: 955
-        y: 1040
-        width: 790
-        height: 890
+        x: 392
+        y: 473
+        width: 402
+        height: 166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc00fccacfb397543b44899f2ab21d29
-      internalID: 1435999734
+      spriteID: ff2ab4ab8afd03d4abc39922b7b84255
+      internalID: 1594815770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_2
+      name: campfire_1
       rect:
         serializedVersion: 2
-        x: 154
-        y: 1436
-        width: 440
-        height: 190
+        x: 1328
+        y: 240
+        width: 205
+        height: 339
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba47538a1ca701f43bb288b7336c988d
-      internalID: -639038254
+      spriteID: 213966cd02ca0704caa1257b0d8e3709
+      internalID: -688252218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_3
+      name: sign_2
       rect:
         serializedVersion: 2
-        x: 157
-        y: 1143
-        width: 459
-        height: 189
+        x: 345
+        y: 242
+        width: 468
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5eacfe5246a9b448fc70de94c476d5
-      internalID: 1399935305
+      spriteID: bbb66a57f51e7764ba0d6a36ddac7b6a
+      internalID: -942886318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charged_attack_4
+      name: campfire_0
       rect:
         serializedVersion: 2
-        x: 1052
+        x: 1020
+        y: 273
+        width: 224
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a3d7edbd5f4bf4995aa124042c3815
+      internalID: 1993319069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_2
+      rect:
+        serializedVersion: 2
+        x: 854
         y: 52
-        width: 721
-        height: 897
+        width: 190
+        height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2392c065f0a0891468234143770d6f16
-      internalID: -639084308
+      spriteID: b668c9d20b8bd7a47b5e2954d4cb733d
+      internalID: 907215065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_3
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 58
+        width: 169
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83b3545a1ff6e3438a6fabf4df759d1
+      internalID: 1498728382
       vertices: []
       indices: 
       edges: []
@@ -225,11 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      charged_attack_0: -1135095027
-      charged_attack_1: 1435999734
-      charged_attack_2: -639038254
-      charged_attack_3: 1399935305
-      charged_attack_4: -639084308
+      campfire_0: 1993319069
+      campfire_1: -688252218
+      campfire_2: 907215065
+      campfire_3: 1498728382
+      sign_0: 71902665
+      sign_1: 1594815770
+      sign_2: -942886318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

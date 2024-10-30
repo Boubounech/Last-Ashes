@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fc6be133b47d3b4483fbeb0e9032b36
+guid: 3869913a60188b64c83f49c67c66f090
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,112 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: charged_attack_0
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 1743
-        width: 409
-        height: 190
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fce37cdedf07754aa207abae5adb755
-      internalID: -1135095027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: charged_attack_1
-      rect:
-        serializedVersion: 2
-        x: 955
-        y: 1040
-        width: 790
-        height: 890
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc00fccacfb397543b44899f2ab21d29
-      internalID: 1435999734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: charged_attack_2
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 1436
-        width: 440
-        height: 190
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba47538a1ca701f43bb288b7336c988d
-      internalID: -639038254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: charged_attack_3
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 1143
-        width: 459
-        height: 189
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b5eacfe5246a9b448fc70de94c476d5
-      internalID: 1399935305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: charged_attack_4
-      rect:
-        serializedVersion: 2
-        x: 1052
-        y: 52
-        width: 721
-        height: 897
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2392c065f0a0891468234143770d6f16
-      internalID: -639084308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -224,12 +119,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      charged_attack_0: -1135095027
-      charged_attack_1: 1435999734
-      charged_attack_2: -639038254
-      charged_attack_3: 1399935305
-      charged_attack_4: -639084308
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
