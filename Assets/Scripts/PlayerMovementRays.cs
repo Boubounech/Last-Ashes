@@ -97,13 +97,13 @@ public class PlayerMovementRays : MonoBehaviour
             allowDash = false;
             allowJump = false;
 
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         });
         PlayerEvents.OnPlayerDiveEnd.AddListener(delegate {
             allowDash = true;
             allowJump = true;
             canDive = false;
-            rb.constraints = RigidbodyConstraints2D.None;
+            //rb.constraints = RigidbodyConstraints2D.None;
         });
         PlayerEvents.OnPlayerCanDive.AddListener(delegate {
             canDive = true;
