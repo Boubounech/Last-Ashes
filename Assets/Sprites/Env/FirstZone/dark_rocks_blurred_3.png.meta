@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: dark_rocks_blurred_3_0
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1035
+        width: 900
+        height: 930
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b4d9e75be6e974dae35a52fa0b9121
+      internalID: -1136417994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_blurred_3_1
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 1198
+        width: 531
+        height: 707
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fceec6ac0de2ebd4ea0b354edc8cced5
+      internalID: -1278324344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_blurred_3_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 107
+        width: 744
+        height: 827
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d85721c36f01b4c9140849fdf6b88d
+      internalID: 1644807769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_blurred_3_3
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 157
+        width: 739
+        height: 860
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b56aa325ae8a7408f3796498f78f10
+      internalID: -1203101579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dark_rocks_blurred_3_0: -1136417994
+      dark_rocks_blurred_3_1: -1278324344
+      dark_rocks_blurred_3_2: 1644807769
+      dark_rocks_blurred_3_3: -1203101579
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

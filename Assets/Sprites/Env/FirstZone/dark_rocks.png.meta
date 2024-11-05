@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: dark_rocks_0
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 1044
+        width: 884
+        height: 913
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e0560d64e65ec499c16db042e75062
+      internalID: 1811859472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_1
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 1207
+        width: 515
+        height: 690
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829c4d7dee69f9c4e9b409b0378194fc
+      internalID: -1032169469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 116
+        width: 728
+        height: 809
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6766ffa62c1de0a4285af76d1c7c456c
+      internalID: -1799271177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_rocks_3
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 166
+        width: 723
+        height: 843
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4d1d1ef4cc54945b9ac04846a98731
+      internalID: 701060017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dark_rocks_0: 1811859472
+      dark_rocks_1: -1032169469
+      dark_rocks_2: -1799271177
+      dark_rocks_3: 701060017
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
