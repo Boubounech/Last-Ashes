@@ -514,7 +514,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100000
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -528,7 +528,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6101892252275641845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,11 +562,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   detectionSize: {x: 12, y: 5}
-  headDetectionSize: {x: 1.5, y: 4.5}
+  headDetectionSize: {x: 1.5, y: 4}
   showDetectionPlayerRectangle: 1
   showHeadDetectionRectangle: 1
   wallRayDistance: 0.5
   edgeRayDistance: 1
+  dashRayDistance: 3
+  dashSpeed: 50
+  dashDuration: 0.08
+  timeBeforeDash: 0.75
+  timeAfterDash: 0.5
   player: {fileID: 0}
 --- !u!1 &4650069778533818347
 GameObject:
