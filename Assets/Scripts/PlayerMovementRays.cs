@@ -97,13 +97,11 @@ public class PlayerMovementRays : MonoBehaviour
             allowDash = false;
             allowJump = false;
 
-            //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         });
         PlayerEvents.OnPlayerDiveEnd.AddListener(delegate {
             allowDash = true;
             allowJump = true;
             canDive = false;
-            //rb.constraints = RigidbodyConstraints2D.None;
         });
         PlayerEvents.OnPlayerCanDive.AddListener(delegate {
             canDive = true;
@@ -133,6 +131,10 @@ public class PlayerMovementRays : MonoBehaviour
 
         if (hasControl)
         {
+            if(canEndDive && !isGrounded())
+            {
+                InterruptDive();
+            }
             if (allowDash && wantsToDash && !isDashing && canDash)
             {
                 isDashing = true;
@@ -488,12 +490,17 @@ public class PlayerMovementRays : MonoBehaviour
             }
             else if (context.canceled && canEndDive)
             {
-                PlayerEvents.OnPlayerDiveEnd.Invoke();
-                VitalEnergyManager.instance.ChangeSpeedTimer(1);
-                VitalEnergyManager.instance.RemoveTime(explosionVitalEnergyCost);
-                canEndDive = false;
+                InterruptDive();
             }
         }
+    }
+
+    private void InterruptDive()
+    {
+        PlayerEvents.OnPlayerDiveEnd.Invoke();
+        VitalEnergyManager.instance.ChangeSpeedTimer(1);
+        VitalEnergyManager.instance.RemoveTime(explosionVitalEnergyCost);
+        canEndDive = false;
     }
 
     public void TakeControlAndMoveTo(Vector3 newPosition)

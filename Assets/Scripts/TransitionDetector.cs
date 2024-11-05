@@ -14,6 +14,7 @@ public class TransitionDetector : MonoBehaviour
         if (collision.gameObject.CompareTag(playerTag))
         {
             TransitionManager.OnPlayerEnterTransition.Invoke(transition);
+            PlayerEvents.OnPlayerChangeScene.Invoke();
         }
     }
 }
