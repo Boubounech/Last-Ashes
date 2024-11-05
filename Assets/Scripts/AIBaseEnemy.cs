@@ -15,40 +15,47 @@ public class AIBaseEnemy : MonoBehaviour
     private bool movingRight = false;
     private bool playerNearby = false;
     private bool playerAbove = false;
+    private bool canMove = true;
 
     public float wallRayDistance = 0.5f; 
-    public float edgeRayDistance = 1.0f; 
+    public float edgeRayDistance = 1.0f;
+    public float dashRayDistance = 5.0f;
+    public float dashSpeed = 10f;
+    public float dashDuration = 0.5f;
+    public float timeBeforeDash = 0.75f;
+    public float timeAfterDash = 0.5f;
 
-    public Transform player; 
+    public Transform player;
 
     void Start()
     {
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-
         Vector2 detectionCenter = (Vector2)transform.position + Vector2.up * detectionSize.y / 2;
         playerNearby = Physics2D.OverlapBox(detectionCenter, detectionSize, 0f, playerLayer);
 
-        Vector2 headDetectionCenter = (Vector2)transform.position + Vector2.up * (headDetectionSize.y / 2 + 0.5f); 
+        Vector2 headDetectionCenter = (Vector2)transform.position + Vector2.up * (headDetectionSize.y / 2 + 1f);
         playerAbove = Physics2D.OverlapBox(headDetectionCenter, headDetectionSize, 0f, playerLayer);
+        if (canMove)
+        {
+            if (playerAbove)
+            {
+                return;
+            }
 
-        if (playerAbove)
-        {
-            return; 
+            if (playerNearby)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                Patrol();
+            }
         }
 
-        if (playerNearby)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            Patrol();
-        }
     }
 
     void Patrol()
@@ -57,7 +64,6 @@ public class AIBaseEnemy : MonoBehaviour
         transform.Translate(Vector2.right * direction * moveSpeed * Time.deltaTime);
 
         RaycastHit2D wallHit = Physics2D.Raycast(transform.position, Vector2.right * direction, wallRayDistance, groundLayer);
-
         Vector2 edgeRayOrigin = transform.position + Vector3.right * direction * 0.5f;
         RaycastHit2D groundHit = Physics2D.Raycast(edgeRayOrigin, Vector2.down, edgeRayDistance, groundLayer);
 
@@ -70,18 +76,61 @@ public class AIBaseEnemy : MonoBehaviour
 
     void ChasePlayer()
     {
-        if (player.position.x > transform.position.x)
+        float direction = movingRight ? 1 : -1;
+        Vector2 edgeRayOrigin = transform.position + Vector3.right * direction * 0.5f;
+        RaycastHit2D groundHit = Physics2D.Raycast(edgeRayOrigin, Vector2.down, edgeRayDistance, groundLayer);
+
+        RaycastHit2D dashHit = Physics2D.Raycast(transform.position, Vector2.right * direction, dashRayDistance, playerLayer);
+
+        if (!groundHit.collider)
         {
-            if (!movingRight) FlipEnemy();
-            movingRight = true;
+            return; 
+        }
+
+        if (dashHit.collider != null)
+        {
+            StartCoroutine(DashTowardsPlayer(direction));
         }
         else
         {
-            if (movingRight) FlipEnemy();
-            movingRight = false;
+            if (player.position.x > transform.position.x)
+            {
+                if (!movingRight) FlipEnemy();
+                movingRight = true;
+            }
+            else
+            {
+                if (movingRight) FlipEnemy();
+                movingRight = false;
+            }
+
+            transform.Translate(Vector2.right * (movingRight ? 1 : -1) * moveSpeed * Time.deltaTime);
+        }
+    }
+
+    IEnumerator DashTowardsPlayer(float direction)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(timeBeforeDash);
+
+        float dashTime = 0;
+        while (dashTime < dashDuration)
+        {
+            RaycastHit2D wallHit = Physics2D.Raycast(transform.position, Vector2.right * direction, wallRayDistance, groundLayer);
+            Vector2 edgeRayOrigin = transform.position + Vector3.right * direction * 0.5f;
+            RaycastHit2D groundHit = Physics2D.Raycast(edgeRayOrigin, Vector2.down, edgeRayDistance, groundLayer);
+            if(wallHit.collider != null || groundHit.collider == null)
+            {
+                break;
+            }
+
+            transform.Translate(Vector2.right * direction * dashSpeed * Time.deltaTime);
+            dashTime += Time.deltaTime;
+            yield return null; 
         }
 
-        transform.Translate(Vector2.right * (movingRight ? 1 : -1) * moveSpeed * Time.deltaTime);
+        yield return new WaitForSeconds(timeAfterDash);
+        canMove = true;
     }
 
     void FlipEnemy()
@@ -108,12 +157,14 @@ public class AIBaseEnemy : MonoBehaviour
             Gizmos.DrawWireCube(detectionCenter, detectionSize);
         }
 
-
         if (showHeadDetectionRectangle)
         {
             Gizmos.color = Color.yellow;
-            Vector2 headDetectionCenter = (Vector2)transform.position + Vector2.up * (headDetectionSize.y / 2 + 0.5f);
+            Vector2 headDetectionCenter = (Vector2)transform.position + Vector2.up * (headDetectionSize.y / 2 + 1f);
             Gizmos.DrawWireCube(headDetectionCenter, headDetectionSize);
         }
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * direction * dashRayDistance);
     }
 }
