@@ -12,6 +12,9 @@ public static class PlayerEvents
     public static UnityEvent<float> OnPlayerVerticalFacing = new UnityEvent<float>();
     public static UnityEvent OnPlayerDash = new UnityEvent();
 
+    // Scene
+    public static UnityEvent OnPlayerChangeScene = new UnityEvent();
+
     // ################
     // #    ATTACK    #
     // ################
@@ -19,6 +22,8 @@ public static class PlayerEvents
     {
         public Vector2 direction;
     }
+
+    
 
     // Attack
     public static UnityEvent<Attack> OnPlayerAttack = new UnityEvent<Attack>();

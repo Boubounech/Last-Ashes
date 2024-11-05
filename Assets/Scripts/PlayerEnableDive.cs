@@ -14,12 +14,15 @@ public class PlayerEnableDive : MonoBehaviour
 
     [SerializeField] private float invicibilityTime;
     [SerializeField] private float cooldownDive;
+    [SerializeField] private bool isSceneChanging;
 
     private void Awake()
     {
         PlayerEvents.OnPlayerDive.AddListener(StartDive);
         PlayerEvents.OnPlayerDiveEnd.AddListener(EndDive);
+        PlayerEvents.OnPlayerChangeScene.AddListener(delegate { isSceneChanging = true; });
         inDivePlayerRender.SetActive(false);
+        isSceneChanging = false;
     }
 
     public void StartDive()
@@ -36,11 +39,15 @@ public class PlayerEnableDive : MonoBehaviour
         playerColisionBox.enabled = true;
         playerRender.SetActive(true);
         inDivePlayerRender.SetActive(false);
-
-        DetectContactAttack explosionAttack = Instantiate(explosionPrefab, transform.position, Quaternion.identity).GetComponent<DetectContactAttack>();
-        explosionAttack.combatScript = combatScript;
+        if (!isSceneChanging) // pour eviter une erreur au moment de changer de scene
+        {
+            DetectContactAttack explosionAttack = Instantiate(explosionPrefab, transform.position, Quaternion.identity).GetComponent<DetectContactAttack>();
+            explosionAttack.combatScript = combatScript;
+        }
         Invoke("RemoveInvicibility", invicibilityTime);
         Invoke("AllowDive", cooldownDive);
+
+
     }
 
     private void RemoveInvicibility()

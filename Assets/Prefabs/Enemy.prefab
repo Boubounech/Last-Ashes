@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 4148118215089205430}
   - component: {fileID: 8759455603037618414}
   - component: {fileID: 6101892252275641845}
+  - component: {fileID: 1008595875054084552}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -541,6 +542,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 3
+--- !u!114 &1008595875054084552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853642687386616525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764f6047d7ff0ad4dbad148cc568ad84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  detectionSize: {x: 12, y: 5}
+  headDetectionSize: {x: 1.5, y: 4.5}
+  showDetectionPlayerRectangle: 1
+  showHeadDetectionRectangle: 1
+  wallRayDistance: 0.5
+  edgeRayDistance: 1
+  player: {fileID: 0}
 --- !u!1 &4650069778533818347
 GameObject:
   m_ObjectHideFlags: 0
