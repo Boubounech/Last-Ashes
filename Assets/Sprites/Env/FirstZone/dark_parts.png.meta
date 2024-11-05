@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d791167a1461c4049a3242ced522e3c7
+guid: 4d997cb7211eaa247b410604c28c0a6a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rocks_0
+      name: dark_parts_0
       rect:
         serializedVersion: 2
-        x: 138
-        y: 1044
-        width: 884
-        height: 913
+        x: 98
+        y: 1590
+        width: 330
+        height: 374
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3079075f64105434584b603522f6f05e
-      internalID: -1693613974
+      spriteID: 10aa592f7137b0843a992a5df8cac171
+      internalID: 1887585970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rocks_1
+      name: dark_parts_1
       rect:
         serializedVersion: 2
-        x: 1405
-        y: 1207
-        width: 515
-        height: 690
+        x: 179
+        y: 659
+        width: 226
+        height: 708
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5746610afa404b248806e2f6493f12fd
-      internalID: 1105436642
+      spriteID: 2e0700e8174c4f8449cad3eac2777c94
+      internalID: 2045383795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rocks_2
+      name: dark_parts_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 116
-        width: 728
-        height: 809
+        x: 527
+        y: 629
+        width: 181
+        height: 770
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70755450868b5d64d9982e42870145dd
-      internalID: 954927866
+      spriteID: a92a29e497f97be4a93650ca13e053e2
+      internalID: -1541542528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rocks_3
+      name: dark_parts_3
       rect:
         serializedVersion: 2
-        x: 1156
-        y: 166
-        width: 723
-        height: 843
+        x: 825
+        y: 1126
+        width: 898
+        height: 239
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +187,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a972a3061fc142848ab038f9d7748f2a
-      internalID: 1105160670
+      spriteID: 6f75c4e13a1fe1a4d956399f85c903f8
+      internalID: 1460765068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_parts_4
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 643
+        width: 508
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31bf47b2ac447b548b98dcf1d5b83ad4
+      internalID: -2125121808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_parts_5
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 383
+        width: 1489
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f892eb402726df469bac2b5812cc5f8
+      internalID: -1079786911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_parts_6
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 128
+        width: 995
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d93747ae49da1b948bc646ffe5ebf6fb
+      internalID: -1033902173
       vertices: []
       indices: 
       edges: []
@@ -204,10 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rocks_0: -1693613974
-      rocks_1: 1105436642
-      rocks_2: 954927866
-      rocks_3: 1105160670
+      dark_parts_0: 1887585970
+      dark_parts_1: 2045383795
+      dark_parts_2: -1541542528
+      dark_parts_3: 1460765068
+      dark_parts_4: -2125121808
+      dark_parts_5: -1079786911
+      dark_parts_6: -1033902173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3869913a60188b64c83f49c67c66f090
+guid: 1bc6a5bd94535564ea4be4c715873a7d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: rocks_blurred_20_0
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 991
+        width: 990
+        height: 1018
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f539b1c8dfda7204195e84a7d5a991ff
+      internalID: -1040716474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_blurred_20_1
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 1155
+        width: 620
+        height: 794
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bda06d0c1f57d845b6ed9d22384f6f3
+      internalID: 14689122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_blurred_20_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 63
+        width: 834
+        height: 914
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44df4f6b022a23c4f87441888e754416
+      internalID: -277230553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks_blurred_20_3
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 113
+        width: 828
+        height: 948
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb2b1af7aa338046b1f71316afa8b2d
+      internalID: 1934723301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rocks_blurred_20_0: -1040716474
+      rocks_blurred_20_1: 14689122
+      rocks_blurred_20_2: -277230553
+      rocks_blurred_20_3: 1934723301
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
