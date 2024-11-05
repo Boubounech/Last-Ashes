@@ -38,7 +38,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            PlayerEvents.OnPlayerHitDamageable.Invoke(fireballDamage);
+            PlayerEvents.OnPlayerHitDamageable.Invoke(fireballDamage, other.gameObject);
         }
     }
 }

@@ -10,7 +10,7 @@ public class DetectContactAttack : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            PlayerEvents.OnPlayerHitDamageable.Invoke(attackDamage);
+            PlayerEvents.OnPlayerHitDamageable.Invoke(attackDamage, other.gameObject);
             if (enablePogo)
             {
                 combatScript.PogoOnDamage();

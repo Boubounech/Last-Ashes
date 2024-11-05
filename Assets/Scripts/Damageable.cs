@@ -11,13 +11,17 @@ public class Damageable : MonoBehaviour
         PlayerEvents.OnPlayerHitDamageable.AddListener(GetDamage);
     }
 
-    private void GetDamage(float damage)
+    private void GetDamage(float damage, GameObject reciever)
     {
-        this.lifePoints -= damage;
-        if(this.lifePoints <= 0)
+        if(reciever == this.gameObject)
         {
-            Destroy(this.gameObject);
+            this.lifePoints -= damage;
+            if (this.lifePoints <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
+        
     }
 
 }
