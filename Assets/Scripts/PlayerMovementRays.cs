@@ -69,7 +69,7 @@ public class PlayerMovementRays : MonoBehaviour
     private Coroutine healCoroutine;
 
     [Header("Campfire")]
-    [SerializeField] private DetectCampfire detectCampfireScript;
+    [SerializeField] private DetectObjectContact detectObjectScript;
 
     [Header("Dive")]
     [SerializeField] private float multVitalEnergyCost;
@@ -106,7 +106,6 @@ public class PlayerMovementRays : MonoBehaviour
         PlayerEvents.OnPlayerCanDive.AddListener(delegate {
             canDive = true;
         });
-
     }
 
     private void Start()
@@ -468,13 +467,23 @@ public class PlayerMovementRays : MonoBehaviour
 
     public void UseCampfire(InputAction.CallbackContext context)
     {
-        if (detectCampfireScript.GetIsCloseToCampfire())
+        if (detectObjectScript.GetIsCloseToCampfire())
         {
             if (context.performed)
             {
+                InventoryManager.instance.GainBonusFromItems();
                 LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
                 VitalEnergyManager.instance.ResetTimer();
             }
+        }
+    }
+
+    public void TakeItem(InputAction.CallbackContext context)
+    {
+        if (detectObjectScript.GetIsCloseToItem() && context.performed)
+        {
+            GameObject item = detectObjectScript.GetLastObjectTouched();
+            PlayerEvents.OnDestroyItem.Invoke(item);
         }
     }
 

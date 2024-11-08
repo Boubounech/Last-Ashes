@@ -5672,7 +5672,7 @@ MonoBehaviour:
   slideSpeed: 2
   timeToHeal: 1
   healActionVitalEnergyCost: 30
-  detectCampfireScript: {fileID: 3939712256275182993}
+  detectObjectScript: {fileID: 3939712256275182993}
   multVitalEnergyCost: 2
   explosionVitalEnergyCost: 20
 --- !u!114 &3102706042425436854
