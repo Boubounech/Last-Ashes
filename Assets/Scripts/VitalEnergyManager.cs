@@ -71,6 +71,11 @@ public class VitalEnergyManager : MonoBehaviour
         timeSpeedMultiplicator = speedMult;
     }
 
+    public void AddMaxEnergyTime(float maxEnergyToAdd)
+    {
+        maxEnergyTime += maxEnergyToAdd;
+    }
+
     public float GetCurrentEnergyPercent()
     {
         return currentEnergyTime / maxEnergyTime;

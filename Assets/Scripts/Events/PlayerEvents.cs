@@ -46,7 +46,9 @@ public static class PlayerEvents
     public static UnityEvent OnPlayerDiveEnd = new UnityEvent();
     public static UnityEvent OnPlayerCanDive = new UnityEvent();
 
-
     // Hit something
     public static UnityEvent<float, GameObject> OnPlayerHitDamageable = new UnityEvent<float, GameObject>();
+
+    //Item
+    public static UnityEvent<GameObject> OnDestroyItem = new UnityEvent<GameObject>();
 }
