@@ -547,4 +547,18 @@ public class PlayerMovementRays : MonoBehaviour
         hasControl = true;
         OnPlayerRegainControl.Invoke();
     }
+
+    public void ToggleGamePause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (Time.timeScale != 0)
+            {
+                GameEvents.OnPauseGame.Invoke();
+            } else
+            {
+                GameEvents.OnResumeGame.Invoke();
+            }
+        }
+    }
 }
