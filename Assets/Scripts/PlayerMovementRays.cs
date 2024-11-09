@@ -35,7 +35,7 @@ public class PlayerMovementRays : MonoBehaviour
 
 
     [Header("Double Jump")]
-    [SerializeField] private bool allowDoubleJump = true;
+    private static bool allowDoubleJump = false;
     [SerializeField] private float doubleJumpPower = 100f;
     [SerializeField] private float shortestDistToGroundForDJ = 0.3f;
     private bool canDoubleJump = false;
@@ -43,7 +43,7 @@ public class PlayerMovementRays : MonoBehaviour
     private bool hasCanceledOnce = false;
 
     [Header("Dash")]
-    [SerializeField] private bool allowDash = true;
+    private static bool allowDash = false;
     [SerializeField] private float dashPower = 10;
     [SerializeField] private float dashLength = 0.2f;
     [SerializeField] private float dashReloadTime = 0.5f;
@@ -58,7 +58,7 @@ public class PlayerMovementRays : MonoBehaviour
     [SerializeField] private float maxVerticalSpeed;
 
     [Header("WallJump")]
-    [SerializeField] private bool allowWallJump;
+    private static bool allowWallJump = false;
     [SerializeField] private float timerChangeOrientation;
     [SerializeField] private float slideSpeed;
     private bool allowChangeOrientation = true;
@@ -68,12 +68,13 @@ public class PlayerMovementRays : MonoBehaviour
     [SerializeField] private float healActionVitalEnergyCost;
     private Coroutine healCoroutine;
 
-    [Header("Campfire")]
+    [Header("Use")]
     [SerializeField] private DetectObjectContact detectObjectScript;
 
     [Header("Dive")]
     [SerializeField] private float multVitalEnergyCost;
     [SerializeField] private float explosionVitalEnergyCost;
+    private static bool allowDive = false;
     private bool canDive = true;
     private bool canEndDive = false;
 
@@ -105,6 +106,25 @@ public class PlayerMovementRays : MonoBehaviour
         });
         PlayerEvents.OnPlayerCanDive.AddListener(delegate {
             canDive = true;
+        });
+
+        PlayerEvents.OnDashObtained.AddListener(delegate
+        {
+            allowDash = true;
+            Debug.Log("dash");
+            Debug.Log(allowDash);
+        });
+        PlayerEvents.OnWallJumpObtained.AddListener(delegate
+        {
+            allowWallJump = true;
+        });
+        PlayerEvents.OnDiveObtained.AddListener(delegate
+        {
+            allowDive = true;
+        });
+        PlayerEvents.OnDoubleJumpObtained.AddListener(delegate
+        {
+            allowDoubleJump = true;
         });
     }
 
@@ -482,6 +502,7 @@ public class PlayerMovementRays : MonoBehaviour
     {
         if (detectObjectScript.GetIsCloseToItem() && context.performed)
         {
+
             GameObject item = detectObjectScript.GetLastObjectTouched();
             PlayerEvents.OnDestroyItem.Invoke(item);
         }
@@ -489,7 +510,7 @@ public class PlayerMovementRays : MonoBehaviour
 
     public void GroundDive(InputAction.CallbackContext context)
     {
-        if (isGrounded() && canDive)
+        if (isGrounded() && canDive && allowDive)
         {
             if (context.performed)
             {

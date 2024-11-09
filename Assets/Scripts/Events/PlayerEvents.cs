@@ -51,4 +51,9 @@ public static class PlayerEvents
 
     //Item
     public static UnityEvent<GameObject> OnDestroyItem = new UnityEvent<GameObject>();
+    public static UnityEvent OnDashObtained = new UnityEvent();
+    public static UnityEvent OnWallJumpObtained = new UnityEvent();
+    public static UnityEvent OnDiveObtained = new UnityEvent();
+    public static UnityEvent OnFireballObtained = new UnityEvent();
+    public static UnityEvent OnDoubleJumpObtained = new UnityEvent();
 }
