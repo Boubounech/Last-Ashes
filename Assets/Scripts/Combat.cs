@@ -16,6 +16,7 @@ public class Combat : MonoBehaviour
     [Header("Fireball")]
     private bool isFireballOnCooldown;
     private bool canFirball = true;
+    private static bool allowFireball = false;
 
     [Header("ChargedAttack")]
     private bool isChargingAttack = false;
@@ -65,6 +66,11 @@ public class Combat : MonoBehaviour
             canFirball = true;
         });
         PlayerEvents.OnPlayerChargeChargeAttack.AddListener (delegate { isCharged = true; });
+
+        PlayerEvents.OnFireballObtained.AddListener(delegate
+        {
+            allowFireball = true;
+        });
     }
 
     private void Start()
@@ -87,7 +93,7 @@ public class Combat : MonoBehaviour
 
     public void Fireball(InputAction.CallbackContext context)
     {
-        if (context.performed && canFirball)
+        if (context.performed && canFirball && allowFireball)
         {
             if (!isFireballOnCooldown)
             {

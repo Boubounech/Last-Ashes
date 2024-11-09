@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     private float timeBonusToAdd = 0;
-    private HashSet<GameObject> collectedItems = new HashSet<GameObject>(); //potentiellement pour l'affichage, a supprimer sinon
+    private HashSet<string> collectedItems = new HashSet<string>(); //potentiellement pour l'affichage, a supprimer sinon
 
     private void Awake()
     {
@@ -21,9 +21,9 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItemToInventory(GameObject item, float timeBonus)
+    public void AddItemToCollected(string itemID, float timeBonus)
     {
-        collectedItems.Add(item); //potentiellement pour l'affichage, a supprimer sinon
+        collectedItems.Add(itemID); //potentiellement pour l'affichage, a supprimer sinon
         timeBonusToAdd += timeBonus;
     }
 
@@ -31,8 +31,10 @@ public class InventoryManager : MonoBehaviour
     {
         VitalEnergyManager.instance.AddMaxEnergyTime(timeBonusToAdd);
         timeBonusToAdd = 0;
-        collectedItems.Clear(); //potentiellement pour l'affichage, a supprimer sinon
     }
 
-
+    public HashSet<string> GetCollectedItems()
+    {
+        return collectedItems;
+    }
 }

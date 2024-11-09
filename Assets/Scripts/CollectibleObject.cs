@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CollectibleObject : MonoBehaviour
 {
-    private static bool isCollected = false;
+    private bool isCollected = false;
     [SerializeField] private float timeBonus;
+    [SerializeField] private string itemID;
 
     private void Awake()
     {
@@ -15,9 +16,13 @@ public class CollectibleObject : MonoBehaviour
 
     void Start()
     {
+        if (InventoryManager.instance.GetCollectedItems().Contains(itemID))
+        {
+            isCollected = true;
+        }
         if (isCollected)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -25,7 +30,7 @@ public class CollectibleObject : MonoBehaviour
     {
         if(itemToDestroy == this.gameObject)
         {
-            InventoryManager.instance.AddItemToInventory(this.gameObject, timeBonus);
+            InventoryManager.instance.AddItemToCollected(this.itemID, timeBonus);
             isCollected = true;
             Destroy(this.gameObject);
         }
