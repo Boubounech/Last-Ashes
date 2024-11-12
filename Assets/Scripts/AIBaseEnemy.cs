@@ -55,7 +55,6 @@ public class AIBaseEnemy : MonoBehaviour
                 Patrol();
             }
         }
-
     }
 
     void Patrol()
