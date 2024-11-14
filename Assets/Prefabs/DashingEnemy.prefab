@@ -433,9 +433,9 @@ GameObject:
   - component: {fileID: 4148118215089205430}
   - component: {fileID: 8759455603037618414}
   - component: {fileID: 6101892252275641845}
-  - component: {fileID: 1008595875054084552}
+  - component: {fileID: 8389595909322049431}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: DashingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 3
---- !u!114 &1008595875054084552
+--- !u!114 &8389595909322049431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3853642687386616525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764f6047d7ff0ad4dbad148cc568ad84, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ce4149d7e67adc45b789083d48583ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
@@ -567,12 +567,25 @@ MonoBehaviour:
   showHeadDetectionRectangle: 1
   wallRayDistance: 0.5
   edgeRayDistance: 1
-  dashRayDistance: 3
+  attackRange: 5
+  player: {fileID: 0}
+  state: 0
+  OnStartPatrolling:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartChasing:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartAttacking:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndAttacking:
+    m_PersistentCalls:
+      m_Calls: []
   dashSpeed: 50
   dashDuration: 0.08
   timeBeforeDash: 0.75
   timeAfterDash: 0.5
-  player: {fileID: 0}
 --- !u!1 &4650069778533818347
 GameObject:
   m_ObjectHideFlags: 0
