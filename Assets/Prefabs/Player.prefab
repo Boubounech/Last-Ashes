@@ -5572,6 +5572,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 539857932514570527}
+        m_TargetAssemblyTypeName: PlayerMovementRays, Assembly-CSharp
+        m_MethodName: TakeItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5c4f8dc5-1430-48cd-aad7-d0586b498335
     m_ActionName: Game/Use[/Keyboard/e]
   - m_PersistentCalls:
@@ -5622,6 +5634,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2b39051c-8bc1-4cc0-9869-4cd9f0c8bfe4
     m_ActionName: Game/Dive[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 58cae4d3-24a3-40b7-a9bd-1f22122a5a46
+    m_ActionName: Game/Pause[/Keyboard/p,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player
   m_DefaultActionMap: Game
@@ -5657,17 +5673,14 @@ MonoBehaviour:
   hasAlreadyJump: 0
   airZone: 5
   allowJump: 1
-  allowDoubleJump: 1
   doubleJumpPower: 600
   shortestDistToGroundForDJ: 1
-  allowDash: 1
   dashPower: 5
   dashLength: 0.1
   dashReloadTime: 0.5
   airGravityScale: 0.75
   fallGravityScale: 2
   maxVerticalSpeed: 40
-  allowWallJump: 1
   timerChangeOrientation: 0.1
   slideSpeed: 2
   timeToHeal: 1
