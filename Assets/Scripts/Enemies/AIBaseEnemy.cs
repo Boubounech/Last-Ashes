@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class AIBaseEnemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private bool actionPlayerAbove;
     public LayerMask groundLayer;
     public LayerMask playerLayer;
     public Vector2 detectionSize = new Vector2(5f, 2f); 
@@ -62,7 +63,15 @@ public class AIBaseEnemy : MonoBehaviour
         
             if (playerAbove)
             {
-                return;
+                if (actionPlayerAbove)
+                {
+                    PlayerAbove();
+                }
+                else
+                {
+                    return;
+                }
+
             }
 
             if (playerNearby)
@@ -98,7 +107,7 @@ public class AIBaseEnemy : MonoBehaviour
         }
     }
 
-    void ChasePlayer()
+    public virtual void ChasePlayer()
     {
         if (state != State.Chase)
         {
@@ -138,6 +147,11 @@ public class AIBaseEnemy : MonoBehaviour
 
             transform.Translate(Vector2.right * (movingRight ? 1 : -1) * moveSpeed * Time.deltaTime);
         }
+    }
+
+    public virtual void PlayerAbove()
+    {
+        OnStartAttacking.Invoke();
     }
 
     void FlipEnemy()
