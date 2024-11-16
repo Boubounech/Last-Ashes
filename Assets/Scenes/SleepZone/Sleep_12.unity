@@ -3530,7 +3530,7 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Right
   transition:
-    toSceneName: TestScene1
+    toSceneName: Sleep_13
     toEntryName: Left
   playerSpawnPoint: {fileID: 1372546116}
 --- !u!61 &820519055
@@ -13026,8 +13026,8 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Left
   transition:
-    toSceneName: HVertical_4
-    toEntryName: RightTop
+    toSceneName: Sleep_11
+    toEntryName: Right
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970
 BoxCollider2D:

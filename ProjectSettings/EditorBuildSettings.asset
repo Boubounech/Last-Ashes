@@ -35,4 +35,43 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/TestingEnv.unity
     guid: a3ada884fc584b143a46a3be56a1c136
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_0.unity
+    guid: 4cb991410d9f68e4c8ad3d05f50631af
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_1.unity
+    guid: 7a8b956d9066c904a92be5490717aaa9
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_2.unity
+    guid: add9e28ce8dc924439cd03b8360d013f
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_3.unity
+    guid: 0652861a11457774381c91d6c637fc12
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_4.unity
+    guid: 42f288fada6d70c478c9b6ff0ef1d79e
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_5.unity
+    guid: 7445bb9ebe56f1b4aa5be61b781ef233
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_6.unity
+    guid: 85fb427aa13b4344fae2a0640cd6c236
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_7.unity
+    guid: b657cea49ac98dc4eb55d62c7b399094
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_8.unity
+    guid: 85ca8c3b7c8519b47885f3f800360772
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_9.unity
+    guid: aaa8d1395f4c41b4bb1fe612d0b7cecf
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_11.unity
+    guid: e896cc3cc9a505341b0f8d1b1188d9d1
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_12.unity
+    guid: e4061d69f32d67d4396f74db923d56f4
+  - enabled: 1
+    path: Assets/Scenes/SleepZone/Sleep_13.unity
+    guid: afc2f3d7180fb7340b9cdf9e1f4a739a
   m_configObjects: {}

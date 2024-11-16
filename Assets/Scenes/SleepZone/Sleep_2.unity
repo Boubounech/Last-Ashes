@@ -4143,11 +4143,10 @@ PolygonCollider2D:
   m_AutoTiling: 1
   m_Points:
     m_Paths:
-    - - {x: 29.1538, y: 14.919841}
-      - {x: -29.703516, y: 14.836675}
-      - {x: -29.765356, y: -5.5727386}
-      - {x: 29.481508, y: -5.6449986}
-      - {x: 29.48151, y: -4.081628}
+    - - {x: 17.525225, y: 15.0896015}
+      - {x: -18.499342, y: 15.006435}
+      - {x: -18.476307, y: -5.7424984}
+      - {x: 18.192453, y: -5.899639}
   m_UseDelaunayMesh: 0
 --- !u!4 &1044833372
 Transform:
@@ -6235,7 +6234,7 @@ Transform:
   m_GameObject: {fileID: 1738530582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0020474868, y: 3.5296, z: -310}
+  m_LocalPosition: {x: 0.0043055625, y: 3.31718, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11981,7 +11980,7 @@ Transform:
   m_GameObject: {fileID: 2045403967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 1, z: 0}
+  m_LocalPosition: {x: -18.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12003,8 +12002,8 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Left
   transition:
-    toSceneName: HVertical_4
-    toEntryName: RightTop
+    toSceneName: Sleep_1
+    toEntryName: Right
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970
 BoxCollider2D:

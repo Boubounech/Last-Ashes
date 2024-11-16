@@ -3119,7 +3119,7 @@ Transform:
   m_GameObject: {fileID: 820519052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 1, z: 0}
+  m_LocalPosition: {x: 18, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3141,8 +3141,8 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Right
   transition:
-    toSceneName: TestScene1
-    toEntryName: Left
+    toSceneName: Sleep_4
+    toEntryName: LeftTop
   playerSpawnPoint: {fileID: 1372546116}
 --- !u!61 &820519055
 BoxCollider2D:
@@ -4532,7 +4532,7 @@ Transform:
   m_GameObject: {fileID: 1082092594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16, y: 21.5, z: 0}
+  m_LocalPosition: {x: -18, y: 21.5, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4552,10 +4552,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  transitionName: Right
+  transitionName: LeftTop
   transition:
-    toSceneName: TestScene1
-    toEntryName: Left
+    toSceneName: Sleep_0
+    toEntryName: RightBottom
   playerSpawnPoint: {fileID: 2132597724}
 --- !u!61 &1082092597
 BoxCollider2D:
@@ -13029,7 +13029,7 @@ Transform:
   m_GameObject: {fileID: 2045403967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16, y: 1, z: 0}
+  m_LocalPosition: {x: -18, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13049,9 +13049,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  transitionName: Left
+  transitionName: LeftBottom
   transition:
-    toSceneName: HVertical_4
+    toSceneName: Sleep_7
     toEntryName: RightTop
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970
@@ -13685,7 +13685,7 @@ Transform:
   m_GameObject: {fileID: 2132597723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -0.5, z: 0}
+  m_LocalPosition: {x: 2, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
