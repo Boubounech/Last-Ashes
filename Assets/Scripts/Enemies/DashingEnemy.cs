@@ -40,4 +40,5 @@ public class DashingEnemy : AIBaseEnemy
 
         OnEndAttacking.Invoke();
     }
+
 }
