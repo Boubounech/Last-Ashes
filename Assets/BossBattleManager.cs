@@ -22,6 +22,10 @@ public class BossBattleManager : MonoBehaviour
     private void Start()
     {
         playerCamObjective = cam.Follow;
+        if (angelBoss.gameObject.activeInHierarchy)
+        {
+            Debug.LogError("Angel should be disabled by default in this scene");
+        }
     }
 
     private void SpawnBoss()

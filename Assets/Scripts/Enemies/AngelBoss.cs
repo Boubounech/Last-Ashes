@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,20 @@ using UnityEngine.Events;
 
 public class AngelBoss : MonoBehaviour
 {
+    [Serializable]
+    public struct AngelAttack {
+        public string function;
+        public float duration;
+    }
+
     public float attackDelay;
 
-    public string[] attacks;
+    public AngelAttack[] attacks;
+    private bool isHardmode;
+
+    [Header("Positions")]
+    public Transform[] possiblePos;
+    [Range(0f, 1f)] public float changePosProbability;
 
     [Header("VerticalRays")]
     public float leftLimit;
@@ -24,35 +36,59 @@ public class AngelBoss : MonoBehaviour
     [Header("Ball")]
     public GameObject ballPrefab;
     public float ballDelay;
-    public float ballLife;
     public int ballAmount;
 
     [Header("Events")]
     public static UnityEvent OnStartAttack = new UnityEvent();
     public static UnityEvent OnEndAttack = new UnityEvent();
-    public static UnityEvent OnMidLife = new UnityEvent();
+    public static UnityEvent OnChangePosition = new UnityEvent();
 
     private void Awake()
     {
         OnEndAttack.AddListener(SelectNextAttack);
+        GetComponent<Damageable>().OnMidLife.AddListener(delegate { isHardmode = true; });
     }
 
     private void Start()
     {
         SelectNextAttack();
+        isHardmode = false;
     }
 
     private void SelectNextAttack()
     {
-        string attack = attacks[Random.Range(0, attacks.Length)];
+        if (UnityEngine.Random.value <= changePosProbability || isHardmode)
+        {
+            transform.position = possiblePos[UnityEngine.Random.Range(0, possiblePos.Length)].position;
+        }
+
+        AngelAttack attack = attacks[UnityEngine.Random.Range(0, attacks.Length)];
+        float duration = attack.duration;
+
+        if (isHardmode && attacks.Length > 1)
+        {
+            AngelAttack second;
+            do
+            {
+                second = attacks[UnityEngine.Random.Range(0, attacks.Length)];
+            } while (second.function == attack.function);
+            duration = Mathf.Max(duration, second.duration);
+            Invoke(second.function, attackDelay);
+        }
+
         Invoke("EmitAttacking", attackDelay);
-        Invoke(attack, attackDelay);
+        Invoke(attack.function, attackDelay);
+        Invoke("EmitEndAttack", duration + attackDelay);
     }
 
     private void EmitAttacking()
     {
         OnStartAttack.Invoke();
-        Debug.Log("Start Attack");
+    }
+
+    private void EmitEndAttack()
+    {
+        OnEndAttack.Invoke();
     }
 
     private void VerticalRays()
@@ -64,7 +100,7 @@ public class AngelBoss : MonoBehaviour
         }
         for (int i = 0; i < vraynbHoles; i++)
         {
-            rayPos.RemoveAt(Random.Range(0, rayPos.Count));
+            rayPos.RemoveAt(UnityEngine.Random.Range(0, rayPos.Count));
         }
 
         foreach(float xPos in rayPos)
@@ -75,7 +111,6 @@ public class AngelBoss : MonoBehaviour
                 Quaternion.identity
                 );
         }
-        OnEndAttack.Invoke();
     }
 
     private void HorizontalRays()
@@ -95,7 +130,6 @@ public class AngelBoss : MonoBehaviour
                 );
             yield return new WaitForSeconds(hrayDelay);
         }
-        OnEndAttack.Invoke();
     }
 
     private void Ball()
@@ -114,7 +148,5 @@ public class AngelBoss : MonoBehaviour
                 );
             yield return new WaitForSeconds(ballDelay);
         }
-        yield return new WaitForSeconds(ballLife);
-        OnEndAttack.Invoke();
     }
 }
