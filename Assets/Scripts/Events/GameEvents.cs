@@ -7,4 +7,7 @@ public static class GameEvents
 {
     public static UnityEvent OnPauseGame = new UnityEvent();
     public static UnityEvent OnResumeGame = new UnityEvent();
+
+    public static UnityEvent OnPlayerEnterBossZone = new UnityEvent();
+    public static UnityEvent OnPlayerKilledBoss = new UnityEvent();
 }
