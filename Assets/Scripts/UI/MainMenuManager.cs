@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button selectedMainMenuButton;
     [SerializeField] private Button selectedOptionsMenuButton;
 
-    public string firstScene;
+    public string initScene;
 
     private void Start()
     {
@@ -41,6 +41,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(firstScene);
+        SceneManager.LoadScene(initScene);
     }
 }
