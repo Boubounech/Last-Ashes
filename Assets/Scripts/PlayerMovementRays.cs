@@ -494,6 +494,7 @@ public class PlayerMovementRays : MonoBehaviour
                 InventoryManager.instance.GainBonusFromItems();
                 LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
                 VitalEnergyManager.instance.ResetTimer();
+                SaveManager.instance.SaveFile();
             }
         }
     }

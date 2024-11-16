@@ -74,6 +74,12 @@ public class VitalEnergyManager : MonoBehaviour
     public void AddMaxEnergyTime(float maxEnergyToAdd)
     {
         maxEnergyTime += maxEnergyToAdd;
+        SaveManager.instance.timeToSave = maxEnergyTime;
+    }
+
+    public void SetMaxEnergyTime(float maxEnergyToSet)
+    {
+        maxEnergyTime = maxEnergyToSet;
     }
 
     public float GetCurrentEnergyPercent()

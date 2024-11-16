@@ -37,7 +37,7 @@ public class CollectPower : MonoBehaviour
 
     private void CollectItem(GameObject itemToDestroy)
     {
-        if (itemToDestroy == this.gameObject)
+        if (itemToDestroy == this.gameObject && !isCollected)
         {
             InventoryManager.instance.AddItemToCollected(this.itemID, 0);
             isCollected = true;
@@ -59,6 +59,7 @@ public class CollectPower : MonoBehaviour
                     PlayerEvents.OnDoubleJumpObtained.Invoke();
                     break;
             }
+            SaveManager.instance.powersToSave.Add(this.itemID);
 
             Destroy(this.gameObject);
         }
