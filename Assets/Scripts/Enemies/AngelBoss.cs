@@ -39,29 +39,36 @@ public class AngelBoss : MonoBehaviour
     public int ballAmount;
 
     [Header("Events")]
+    public static UnityEvent OnAttackCharging = new UnityEvent();
+    public static UnityEvent OnAttackReady = new UnityEvent();
     public static UnityEvent OnStartAttack = new UnityEvent();
     public static UnityEvent OnEndAttack = new UnityEvent();
     public static UnityEvent OnChangePosition = new UnityEvent();
 
     private void Awake()
     {
-        OnEndAttack.AddListener(SelectNextAttack);
         GetComponent<Damageable>().OnMidLife.AddListener(delegate { isHardmode = true; });
+        OnEndAttack.AddListener(delegate { Invoke("ChargeNextAttack", attackDelay); });
+        OnAttackReady.AddListener(delegate { SelectNextAttack(); });
     }
 
     private void Start()
     {
-        SelectNextAttack();
         isHardmode = false;
+        Invoke("ChargeNextAttack", attackDelay);
     }
 
-    private void SelectNextAttack()
+    private void ChargeNextAttack()
     {
         if (UnityEngine.Random.value <= changePosProbability || isHardmode)
         {
             transform.position = possiblePos[UnityEngine.Random.Range(0, possiblePos.Length)].position;
         }
+        OnAttackCharging.Invoke();
+    }
 
+    private void SelectNextAttack()
+    {
         AngelAttack attack = attacks[UnityEngine.Random.Range(0, attacks.Length)];
         float duration = attack.duration;
 
@@ -73,12 +80,12 @@ public class AngelBoss : MonoBehaviour
                 second = attacks[UnityEngine.Random.Range(0, attacks.Length)];
             } while (second.function == attack.function);
             duration = Mathf.Max(duration, second.duration);
-            Invoke(second.function, attackDelay);
+            Invoke(second.function, 0);
         }
 
-        Invoke("EmitAttacking", attackDelay);
-        Invoke(attack.function, attackDelay);
-        Invoke("EmitEndAttack", duration + attackDelay);
+        Invoke("EmitAttacking", 0);
+        Invoke(attack.function, 0);
+        Invoke("EmitEndAttack", duration);
     }
 
     private void EmitAttacking()
