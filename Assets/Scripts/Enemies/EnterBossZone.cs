@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class EnterBossZone : MonoBehaviour
 {
+    public GameObject angelBoss;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+
+        string id = angelBoss.GetComponent<AngelBoss>().GetAngelId();
+        bool isAlreadyBeaten = SaveManager.instance.bossesSaved.Contains(id) || SaveManager.instance.bossesToSave.Contains(id);
+        if (!isAlreadyBeaten)
         {
-            GameEvents.OnPlayerEnterBossZone.Invoke();
-            gameObject.SetActive(false);
+            if (collision.CompareTag("Player"))
+            {
+                GameEvents.OnPlayerEnterBossZone.Invoke();
+                gameObject.SetActive(false);
+            }
         }
+        else
+        {
+            Debug.Log("already beaten");
+        }
+
+
     }
 }

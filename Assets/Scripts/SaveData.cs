@@ -7,5 +7,6 @@ public class SaveData
     public string scene;
     public List<string> items;
     public List<string> powers;
+    public List<string> bosses;
     public float time;
 }

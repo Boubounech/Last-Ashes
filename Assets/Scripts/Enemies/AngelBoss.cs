@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class AngelBoss : MonoBehaviour
 {
+    [SerializeField] private string bossID;
     [Serializable]
     public struct AngelAttack {
         public string function;
@@ -16,6 +17,8 @@ public class AngelBoss : MonoBehaviour
 
     public AngelAttack[] attacks;
     private bool isHardmode;
+
+    private bool isDead = false; 
 
     [Header("Positions")]
     public Transform[] possiblePos;
@@ -48,14 +51,32 @@ public class AngelBoss : MonoBehaviour
     private void Awake()
     {
         GetComponent<Damageable>().OnMidLife.AddListener(delegate { isHardmode = true; });
+        GetComponent<Damageable>().OnDeath.AddListener(delegate 
+        { 
+            SaveManager.instance.bossesToSave.Add(this.bossID);
+            isDead = true;
+        });
         OnEndAttack.AddListener(delegate { Invoke("ChargeNextAttack", attackDelay); });
         OnAttackReady.AddListener(delegate { SelectNextAttack(); });
     }
 
     private void Start()
     {
-        isHardmode = false;
-        Invoke("ChargeNextAttack", attackDelay);
+        if (SaveManager.instance.bossesSaved.Contains(this.bossID) || SaveManager.instance.bossesToSave.Contains(this.bossID))
+        {
+            isDead = true;
+            Debug.Log("contenu dans");
+        }
+        if (isDead)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            isHardmode = false;
+            Invoke("ChargeNextAttack", attackDelay);
+        }
+
     }
 
     private void ChargeNextAttack()
@@ -155,5 +176,15 @@ public class AngelBoss : MonoBehaviour
                 );
             yield return new WaitForSeconds(ballDelay);
         }
+    }
+
+    public bool GetIsDead()
+    {
+        return this.isDead;
+    }
+
+    public string GetAngelId()
+    {
+        return this.bossID;
     }
 }

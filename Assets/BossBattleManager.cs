@@ -30,7 +30,7 @@ public class BossBattleManager : MonoBehaviour
 
     private void SpawnBoss()
     {
-        Debug.Log("Load boss");
+        Debug.Log("Load boss!");
         cam.Follow = bossCamObjective;
         angelBoss.gameObject.SetActive(true);
     }

@@ -4285,6 +4285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8851165e3da9dbf489648b73d30b4619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angelBoss: {fileID: 729639915}
 --- !u!1 &977128886
 GameObject:
   m_ObjectHideFlags: 0
@@ -6953,7 +6954,7 @@ Transform:
   m_GameObject: {fileID: 1738530582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7908216, y: 3.3657699, z: -310}
+  m_LocalPosition: {x: -4.686839, y: 3.38896, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13514,6 +13515,10 @@ PrefabInstance:
     - target: {fileID: 6248546897384378045, guid: 0e888b6d7d51b5c4b9cb6c09e9c67030, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259823351270165047, guid: 0e888b6d7d51b5c4b9cb6c09e9c67030, type: 3}
+      propertyPath: bossID
+      value: Angel
       objectReference: {fileID: 0}
     - target: {fileID: 6259823351270165047, guid: 0e888b6d7d51b5c4b9cb6c09e9c67030, type: 3}
       propertyPath: possiblePos.Array.data[0]

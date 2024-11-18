@@ -13,11 +13,13 @@ public class SaveManager : MonoBehaviour
     [System.NonSerialized] public string sceneToSave;
     [System.NonSerialized] public List<string> itemsToSave;
     [System.NonSerialized] public List<string> powersToSave;
+    [System.NonSerialized] public List<string> bossesToSave;
     [System.NonSerialized] public float timeToSave;
 
     [System.NonSerialized] public string sceneSaved;
     [System.NonSerialized] public List<string> itemsSaved;
     [System.NonSerialized] public List<string> powersSaved;
+    [System.NonSerialized] public List<string> bossesSaved;
     [System.NonSerialized] public float timeSaved;
 
     private void Awake()
@@ -34,6 +36,7 @@ public class SaveManager : MonoBehaviour
 
         itemsToSave = new List<string>();
         powersToSave = new List<string>();
+        bossesToSave = new List<string>();
     }
 
     void Start()
@@ -52,12 +55,14 @@ public class SaveManager : MonoBehaviour
             sceneSaved = loadedData.scene;
             itemsSaved = new List<string>(loadedData.items);
             powersSaved = new List<string>(loadedData.powers);
+            bossesSaved = new List<string>(loadedData.bosses);
             timeSaved = loadedData.time;
 
             itemsToSave = itemsSaved;
             powersToSave = powersSaved;
+            bossesToSave = bossesSaved;
 
-            Debug.Log($"Game loaded successfully. Scene: {sceneSaved}, Items: {string.Join(", ", itemsSaved)}, Powers: {string.Join(", ", powersSaved)}");
+            Debug.Log($"Game loaded successfully. Scene: {sceneSaved}, Items: {string.Join(", ", itemsSaved)}, Powers: {string.Join(", ", powersSaved)}, Bosses: {string.Join(", ", bossesSaved)}");
 
             InventoryManager.instance.SetCollectedItems(itemsSaved);
             
@@ -88,7 +93,17 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Save file not found.");
+            sceneSaved = null;
+            itemsSaved = new List<string>();
+            powersSaved = new List<string>();
+            bossesSaved = new List<string>();
+            timeSaved = 300;
+
+            itemsToSave = itemsSaved;
+            powersToSave = powersSaved;
+            bossesToSave = bossesSaved;
+
+            Debug.LogWarning("New save created.");
         }
     }
 
@@ -103,6 +118,7 @@ public class SaveManager : MonoBehaviour
             scene = this.sceneToSave,
             items = this.itemsToSave,
             powers = this.powersToSave,
+            bosses = this.bossesToSave,
             time = this.timeToSave
         };
 
