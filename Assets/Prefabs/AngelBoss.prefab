@@ -610,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe139675b7bb554f96dfc1cc87b1219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossID: Angel
   attackDelay: 2
   attacks:
   - function: VerticalRays
