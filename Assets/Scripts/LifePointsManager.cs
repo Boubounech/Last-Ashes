@@ -42,6 +42,7 @@ public class LifePointsManager : MonoBehaviour
         if(currentHp == 0)
         {
             //mort 
+            SaveManager.instance.LoadFile();
         }
     }
 
