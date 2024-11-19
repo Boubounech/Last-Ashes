@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -42,5 +43,20 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(initScene);
+    }
+
+    public void DeleteSave()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, "LastAshesSave.json");
+
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+            Debug.Log($"Fichier supprimé");
+        }
+        else
+        {
+            Debug.LogWarning($"le fichier {filePath} n'existe pas.");
+        }
     }
 }
