@@ -41,6 +41,7 @@ public class VitalEnergyManager : MonoBehaviour
             {
                 stopTimer = true;
                 Debug.Log("mort");
+                SaveManager.instance.LoadFile();
             }
         }
     }

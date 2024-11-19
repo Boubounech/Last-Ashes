@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance;
     private string savePath;
 
+    public string defaultSceneToLoad;
 
     [System.NonSerialized] public string sceneToSave;
     [System.NonSerialized] public List<string> itemsToSave;
@@ -21,6 +22,7 @@ public class SaveManager : MonoBehaviour
     [System.NonSerialized] public List<string> powersSaved;
     [System.NonSerialized] public List<string> bossesSaved;
     [System.NonSerialized] public float timeSaved;
+
 
     private void Awake()
     {
@@ -67,7 +69,6 @@ public class SaveManager : MonoBehaviour
             InventoryManager.instance.SetCollectedItems(itemsSaved);
             
             VitalEnergyManager.instance.SetMaxEnergyTime(timeSaved);
-            VitalEnergyManager.instance.ResetTimer();
 
             if (powersSaved.Contains("Dash"))
             {
@@ -90,6 +91,10 @@ public class SaveManager : MonoBehaviour
                 PlayerEvents.OnDoubleJumpObtained.Invoke();
             }
 
+            SceneManager.LoadScene(sceneSaved);
+
+
+
         }
         else
         {
@@ -103,8 +108,13 @@ public class SaveManager : MonoBehaviour
             powersToSave = powersSaved;
             bossesToSave = bossesSaved;
 
+            
+
+            SceneManager.LoadScene(defaultSceneToLoad);
             Debug.LogWarning("New save created.");
         }
+        VitalEnergyManager.instance.ResetTimer();
+        LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
     }
 
     public void SaveFile()
