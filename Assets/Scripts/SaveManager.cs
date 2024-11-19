@@ -39,16 +39,13 @@ public class SaveManager : MonoBehaviour
         itemsToSave = new List<string>();
         powersToSave = new List<string>();
         bossesToSave = new List<string>();
-    }
-
-    void Start()
-    {
         savePath = Path.Combine(Application.persistentDataPath, "LastAshesSave.json");
         Debug.Log($"Save file path: {savePath}");
     }
 
     public void LoadFile()
     {
+
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath); 
@@ -113,6 +110,7 @@ public class SaveManager : MonoBehaviour
             SceneManager.LoadScene(defaultSceneToLoad);
             Debug.LogWarning("New save created.");
         }
+
         VitalEnergyManager.instance.ResetTimer();
         LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
     }
