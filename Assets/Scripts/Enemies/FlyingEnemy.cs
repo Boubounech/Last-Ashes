@@ -8,6 +8,7 @@ public class FlyingEnemy : AIBaseFlyingEnemy
     [SerializeField] private float knockbackTime;
     [SerializeField] private float stunTime;
 
+
     private Rigidbody2D rb;
 
     private void Awake()
@@ -41,5 +42,6 @@ public class FlyingEnemy : AIBaseFlyingEnemy
 
         this.canMove = true;
     }
+
 
 }
