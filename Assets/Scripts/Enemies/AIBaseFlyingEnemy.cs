@@ -66,7 +66,7 @@ public class AIBaseFlyingEnemy : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    public virtual void OnDrawGizmos()
     {
         if (showDetectionPlayerRectangle)
         {
