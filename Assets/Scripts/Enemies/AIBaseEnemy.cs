@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class AIBaseEnemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    private float baseMoveSpeed;
     [SerializeField] private bool actionPlayerAbove;
     public LayerMask groundLayer;
     public LayerMask playerLayer;
@@ -17,7 +18,7 @@ public class AIBaseEnemy : MonoBehaviour
     protected bool movingRight = false;
     private bool playerNearby = false;
     private bool playerAbove = false;
-    private bool canMove = true;
+    protected bool canMove = true;
 
     public float wallRayDistance = 0.5f; 
     public float edgeRayDistance = 1.0f;
@@ -47,6 +48,7 @@ public class AIBaseEnemy : MonoBehaviour
 
     void Start()
     {
+        baseMoveSpeed = moveSpeed;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         state = State.None;
     }
@@ -159,6 +161,16 @@ public class AIBaseEnemy : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.moveSpeed = speed;
+    }
+
+    public void ResetSpeed()
+    {
+        this.moveSpeed = baseMoveSpeed;
     }
 
     void OnDrawGizmos()
