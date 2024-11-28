@@ -78,8 +78,14 @@ public class PlayerMovementRays : MonoBehaviour
     private bool canDive = true;
     private bool canEndDive = false;
 
+    [Header("Sound")]
+    [SerializeField] private float footstepInterval;
+    private float footstepTimer = 0f;
+
+
     private Rigidbody2D rb;
     private BoxCollider2D col;
+    private AudioSource audioSource;
 
     private Vector2 rightOffset;
     private Vector2 farRightOffset;
@@ -94,6 +100,7 @@ public class PlayerMovementRays : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         PlayerEvents.OnPlayerDive.AddListener(delegate {
             allowDash = false;
             allowJump = false;
@@ -150,7 +157,20 @@ public class PlayerMovementRays : MonoBehaviour
 
         if (hasControl)
         {
-            if(canEndDive && !isGrounded())
+            if (animator.GetBool("IsMoving") && isGrounded())
+            {
+                footstepTimer -= Time.fixedDeltaTime;
+                if (footstepTimer <= 0f)
+                {
+                    PlayFootstepSound();
+                    footstepTimer = footstepInterval; // Reset the timer
+                }
+            }
+            else
+            {
+                footstepTimer = 0f; // Reset the timer when not moving
+            }
+            if (canEndDive && !isGrounded())
             {
                 InterruptDive();
             }
@@ -249,8 +269,17 @@ public class PlayerMovementRays : MonoBehaviour
             }
             rb.velocity = new Vector2(xVelocity, yVelocity);
         }
+
     }
 
+    private void PlayFootstepSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f); // Randomize pitch slightly
+            audioSource.Play();
+        }
+    }
 
 
     public void JumpAction(float jumpPower)
