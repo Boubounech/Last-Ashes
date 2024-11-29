@@ -74,4 +74,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SleepZone/Sleep_13.unity
     guid: afc2f3d7180fb7340b9cdf9e1f4a739a
+  - enabled: 1
+    path: Assets/Scenes/RelationsZone/Relations_0.unity
+    guid: e3ad11528cc280d4682eaf333ea75871
+  - enabled: 1
+    path: Assets/Scenes/RelationsZone/Relations_2.unity
+    guid: 135dcd2abf1949f4b98477ee614afcfe
   m_configObjects: {}
