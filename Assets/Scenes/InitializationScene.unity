@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad33c1d1acc77a4d856444f5fdf8e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSceneToLoad: Relations_0
+  defaultSceneToLoad: Relations_6
 --- !u!4 &1643613221
 Transform:
   m_ObjectHideFlags: 0
