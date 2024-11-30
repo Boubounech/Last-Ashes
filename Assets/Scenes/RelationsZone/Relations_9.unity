@@ -1869,7 +1869,7 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Right
   transition:
-    toSceneName: Sleep_6
+    toSceneName: Relations_8
     toEntryName: Left
   playerSpawnPoint: {fileID: 1372546116}
 --- !u!61 &820519055
@@ -2533,10 +2533,10 @@ PolygonCollider2D:
   m_AutoTiling: 1
   m_Points:
     m_Paths:
-    - - {x: 22.84044, y: 27.497736}
-      - {x: -20.34572, y: 27.229713}
-      - {x: -19.545502, y: -5.2105713}
-      - {x: 22.528713, y: -5.0677776}
+    - - {x: 15.736765, y: 26.508615}
+      - {x: -26.280437, y: 27.049871}
+      - {x: -25.839897, y: -5.8400116}
+      - {x: 15.964565, y: -5.427458}
   m_UseDelaunayMesh: 0
 --- !u!4 &1044833372
 Transform:
@@ -4149,7 +4149,7 @@ Transform:
   m_GameObject: {fileID: 1738530582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.010666857, y: 3.99451, z: -310}
+  m_LocalPosition: {x: -0.3460142, y: 3.5516, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -2091,7 +2091,7 @@ Transform:
   m_GameObject: {fileID: 820519052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 1, z: 0}
+  m_LocalPosition: {x: 23, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2113,8 +2113,8 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Right
   transition:
-    toSceneName: Sleep_13
-    toEntryName: Left
+    toSceneName: Relations_5
+    toEntryName: LeftBottom
   playerSpawnPoint: {fileID: 1372546116}
 --- !u!61 &820519055
 BoxCollider2D:
@@ -4072,7 +4072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1648546127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5473,7 +5473,7 @@ Transform:
   m_GameObject: {fileID: 2045403967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 1, z: 0}
+  m_LocalPosition: {x: -23, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5495,7 +5495,7 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Left
   transition:
-    toSceneName: Sleep_11
+    toSceneName: Relations_9
     toEntryName: Right
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970

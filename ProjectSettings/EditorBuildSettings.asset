@@ -95,4 +95,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RelationsZone/Relations_6.unity
     guid: e0b96e641287f604da392ee52f6723e2
+  - enabled: 1
+    path: Assets/Scenes/RelationsZone/Relations_7.unity
+    guid: 873ae9c693dea9d4a819c6c98b41cc58
+  - enabled: 1
+    path: Assets/Scenes/RelationsZone/Relations_8.unity
+    guid: fadff2c29c97df34e88dddbc95855c61
+  - enabled: 1
+    path: Assets/Scenes/RelationsZone/Relations_9.unity
+    guid: f4846c4fa42e26e4c9e84e31e186093d
   m_configObjects: {}

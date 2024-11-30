@@ -17203,7 +17203,7 @@ MonoBehaviour:
   playerTag: Player
   transitionName: LeftBottom
   transition:
-    toSceneName: Sleep_11
+    toSceneName: Relations_1
     toEntryName: Right
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970
