@@ -936,6 +936,110 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &239626576
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026097589709216535, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438235370874191563, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_Name
+      value: InWorldCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_text
+      value: 'Here lies the most destructive ability.
+
+        Hold Ctrl to dive
+        in the ground and Release it to create a devastating explosion.'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
 --- !u!1 &305463480
 GameObject:
   m_ObjectHideFlags: 0
@@ -5420,3 +5524,4 @@ SceneRoots:
   - {fileID: 230426900}
   - {fileID: 133823613}
   - {fileID: 2112658477}
+  - {fileID: 239626576}

@@ -46,6 +46,11 @@ public static class PlayerEvents
     public static UnityEvent OnPlayerDiveEnd = new UnityEvent();
     public static UnityEvent OnPlayerCanDive = new UnityEvent();
 
+    // Heal
+    public static UnityEvent OnPlayerHeal = new UnityEvent();
+    public static UnityEvent OnPlayerCancelHeal = new UnityEvent();
+
+
     // Hit something
     public static UnityEvent<float, GameObject> OnPlayerHitDamageable = new UnityEvent<float, GameObject>();
 

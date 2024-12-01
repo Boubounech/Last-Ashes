@@ -10,6 +10,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         PlayerEvents.OnPlayerAttack.AddListener(HideBasicSword);
         PlayerEvents.OnPlayerFinishAttack.AddListener(ShowBasicSword);
         PlayerEvents.OnPlayerDash.AddListener(Dash);
+        PlayerEvents.OnPlayerHeal.AddListener(Heal);
+        PlayerEvents.OnPlayerCancelHeal.AddListener(CancelHeal);
     }
 
     private void Start()
@@ -30,5 +32,15 @@ public class PlayerAnimatorManager : MonoBehaviour
     private void Dash()
     {
         animator.SetTrigger("Dash");
+    }
+
+    private void Heal()
+    {
+        animator.SetBool("Heal", true);
+    }
+
+    private void CancelHeal()
+    {
+        animator.SetBool("Heal", false);
     }
 }

@@ -477,14 +477,19 @@ public class PlayerMovementRays : MonoBehaviour
             else if (context.canceled)
             {
                 StopCoroutine(healCoroutine);
+                PlayerEvents.OnPlayerCancelHeal.Invoke();
                 EnableMovement();
             }
+        } else
+        {
+            PlayerEvents.OnPlayerCancelHeal.Invoke();
         }
     }
 
     private IEnumerator HealCoroutine()
     {
         DisableMovement();
+        PlayerEvents.OnPlayerHeal.Invoke();
         while (true) 
         {
             rb.velocity = new Vector2(0, 0);
