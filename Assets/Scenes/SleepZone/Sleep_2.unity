@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5774676657783252261, guid: 3e65e507971a26c409b7fe1e89387d1c, type: 3}
       propertyPath: itemID
-      value: dash_sleep_02
+      value: Dash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2554,7 +2554,7 @@ Transform:
   m_GameObject: {fileID: 1738530582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0043055625, y: 3.31718, z: -310}
+  m_LocalPosition: {x: 0.0050316863, y: 3.31723, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

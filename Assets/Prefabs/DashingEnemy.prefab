@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 8389595909322049431}
   m_Layer: 6
   m_Name: DashingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,6 +542,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 3
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMidLife:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8389595909322049431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  actionPlayerAbove: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
