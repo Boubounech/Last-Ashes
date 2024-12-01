@@ -23,8 +23,6 @@ public static class PlayerEvents
         public Vector2 direction;
     }
 
-    
-
     // Attack
     public static UnityEvent<Attack> OnPlayerAttack = new UnityEvent<Attack>();
     public static UnityEvent OnPlayerFinishAttack = new UnityEvent();
@@ -49,7 +47,6 @@ public static class PlayerEvents
     // Heal
     public static UnityEvent OnPlayerHeal = new UnityEvent();
     public static UnityEvent OnPlayerCancelHeal = new UnityEvent();
-
 
     // Hit something
     public static UnityEvent<float, GameObject> OnPlayerHitDamageable = new UnityEvent<float, GameObject>();
