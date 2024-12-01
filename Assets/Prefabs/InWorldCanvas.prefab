@@ -171,8 +171,8 @@ MonoBehaviour:
 
     Press Shift to dash.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b37216c81bacd1b4e91a10821025b46f, type: 2}
+  m_sharedMaterial: {fileID: 3838538767306902990, guid: b37216c81bacd1b4e91a10821025b46f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

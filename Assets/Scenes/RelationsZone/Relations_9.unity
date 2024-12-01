@@ -1485,6 +1485,26 @@ PrefabInstance:
         Press Jump
         while in the air to jump again.'
       objectReference: {fileID: 0}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_fontSize
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b37216c81bacd1b4e91a10821025b46f, type: 2}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3838538767306902990, guid: b37216c81bacd1b4e91a10821025b46f, type: 2}
+    - target: {fileID: 5691270302570049679, guid: 73d133ec651c2994690270ceb18eb455, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
