@@ -5,10 +5,19 @@ using UnityEngine;
 public class EnterBossZone : MonoBehaviour
 {
     public GameObject angelBoss;
+    public GameObject marionnettiste;
+    private string id;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(angelBoss != null)
+        {
+            id = angelBoss.GetComponent<AngelBoss>().GetAngelId();
+        }
+        else
+        {
+            id = marionnettiste.GetComponent<Marionnettiste>().GetId();
+        }
 
-        string id = angelBoss.GetComponent<AngelBoss>().GetAngelId();
         bool isAlreadyBeaten = SaveManager.instance.bossesSaved.Contains(id) || SaveManager.instance.bossesToSave.Contains(id);
         if (!isAlreadyBeaten)
         {
