@@ -596,4 +596,15 @@ public class PlayerMovementRays : MonoBehaviour
             }
         }
     }
+
+    public void ShowMap(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameEvents.OnMapOpened.Invoke();
+        } else if (context.canceled)
+        {
+            GameEvents.OnMapClosed.Invoke();
+        }
+    }
 }
