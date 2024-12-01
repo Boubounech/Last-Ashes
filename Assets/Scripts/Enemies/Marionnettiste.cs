@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class Marionnettiste : MonoBehaviour
 {
     public SpriteRenderer render;
-    public GameObject[] enemyPrefabs; // Assume index 0 and 1 are enemies 1 & 2, and 2, 3, 4 are enemies 3, 4, 5
-    public Transform[] spawnPoints;  // Assume index 0, 1 are positions 1 & 2; index 2, 3 are positions 3 & 4
+    public GameObject[] enemyPrefabs; 
+    public Transform[] spawnPoints;  
     public BoxCollider2D rightCollider;
     public BoxCollider2D leftCollider;
     public float fadeDuration = 1f;
@@ -15,7 +15,7 @@ public class Marionnettiste : MonoBehaviour
     public float timeBeforeFade = 1f;
     private bool isVulnerable = false;
     private int currentWave = 0;
-    private int waves = 2;
+    private int waves = 5;
     private bool isDead = false;
     [SerializeField] private string bossID = "Marionnettiste";
 
@@ -31,7 +31,6 @@ public class Marionnettiste : MonoBehaviour
             SaveManager.instance.bossesToSave.Add(this.bossID);
             isDead = true;
             GameEvents.OnPlayerKilledBoss.Invoke();
-            Debug.Log("feurrr");
         });
     }
 
@@ -67,7 +66,6 @@ public class Marionnettiste : MonoBehaviour
             while (isVulnerable)
             {
                 yield return new WaitForSeconds(0.5f);
-                Debug.Log(isVulnerable);
             }
 
             rightCollider.enabled = false;
