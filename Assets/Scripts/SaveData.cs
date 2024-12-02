@@ -9,4 +9,6 @@ public class SaveData
     public List<string> powers;
     public List<string> bosses;
     public float time;
+    public bool leftCoin;
+    public bool rightCoin;
 }

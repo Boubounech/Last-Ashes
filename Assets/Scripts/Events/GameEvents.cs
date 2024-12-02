@@ -13,4 +13,7 @@ public static class GameEvents
 
     public static UnityEvent OnPlayerEnterBossZone = new UnityEvent();
     public static UnityEvent OnPlayerKilledBoss = new UnityEvent();
+
+    public static UnityEvent OnPlayerObtainLeftCoin = new UnityEvent();
+    public static UnityEvent OnPlayerObtainRightCoin = new UnityEvent();
 }

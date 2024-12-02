@@ -172,6 +172,9 @@ MonoBehaviour:
   enemiesPerWave: 3
   timeBeforeFade: 1
   bossID: Marionnettiste
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &7566994191126404015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204,7 +207,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.2066867, y: -1.7677523}
+  m_Offset: {x: -3.1054823, y: -2.84052}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -215,7 +218,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5185294, y: 3.5333793}
+  m_Size: {x: 2.275638, y: 1.0639904}
   m_EdgeRadius: 0
 --- !u!61 &7119752720760375672
 BoxCollider2D:
@@ -249,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.63059, y: -1.8532678}
+  m_Offset: {x: 3.6204686, y: -2.7438674}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -260,5 +263,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5906248, y: 3.41547}
+  m_Size: {x: 2.2465296, y: 1.2294531}
   m_EdgeRadius: 0

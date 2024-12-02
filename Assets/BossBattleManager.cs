@@ -13,10 +13,18 @@ public class BossBattleManager : MonoBehaviour
 
     private void Awake()
     {
-        GameEvents.OnPlayerEnterBossZone.AddListener(SpawnBoss);
-        GameEvents.OnPlayerKilledBoss.AddListener(FreePlayer);
         angelBoss.GetComponent<Damageable>().OnDeath.AddListener(
             delegate { GameEvents.OnPlayerKilledBoss.Invoke(); });
+
+        GameEvents.OnPlayerEnterBossZone.AddListener(SpawnBoss);
+        GameEvents.OnPlayerKilledBoss.AddListener(FreePlayer);
+        GameEvents.OnPlayerKilledBoss.AddListener(delegate
+        {
+            if (angelBoss.name == "AngelBoss")
+                GameManager.GiveLeftCoin();
+            else
+                GameManager.GiveRightCoin();
+        });
     }
 
     private void Start()

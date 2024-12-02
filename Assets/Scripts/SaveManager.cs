@@ -22,6 +22,8 @@ public class SaveManager : MonoBehaviour
     [System.NonSerialized] public List<string> powersSaved;
     [System.NonSerialized] public List<string> bossesSaved;
     [System.NonSerialized] public float timeSaved;
+    [System.NonSerialized] public bool leftCoinSaved;
+    [System.NonSerialized] public bool rightCoinSaved;
 
 
     private void Awake()
@@ -45,7 +47,6 @@ public class SaveManager : MonoBehaviour
 
     public void LoadFile()
     {
-
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath); 
@@ -56,6 +57,8 @@ public class SaveManager : MonoBehaviour
             powersSaved = new List<string>(loadedData.powers);
             bossesSaved = new List<string>(loadedData.bosses);
             timeSaved = loadedData.time;
+            leftCoinSaved = loadedData.leftCoin;
+            rightCoinSaved = loadedData.rightCoin;
 
             itemsToSave = itemsSaved;
             powersToSave = powersSaved;
@@ -100,6 +103,8 @@ public class SaveManager : MonoBehaviour
             powersSaved = new List<string>();
             bossesSaved = new List<string>();
             timeSaved = 300;
+            leftCoinSaved = false;
+            rightCoinSaved = false;
 
             itemsToSave = itemsSaved;
             powersToSave = powersSaved;
@@ -110,6 +115,8 @@ public class SaveManager : MonoBehaviour
             SceneManager.LoadScene(defaultSceneToLoad);
             Debug.LogWarning("New save created.");
         }
+
+        GameManager.instance.SetCoin(leftCoinSaved, rightCoinSaved);
 
         VitalEnergyManager.instance.ResetTimer();
         LifePointsManager.instance.SetHpTo(LifePointsManager.instance.GetMaxHp());
@@ -127,7 +134,9 @@ public class SaveManager : MonoBehaviour
             items = this.itemsToSave,
             powers = this.powersToSave,
             bosses = this.bossesToSave,
-            time = this.timeToSave
+            time = this.timeToSave,
+            leftCoin = GameManager.hasLeftCoinPart,
+            rightCoin = GameManager.hasRightCoinPart
         };
 
 
