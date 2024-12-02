@@ -104,4 +104,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RelationsZone/Relations_9.unity
     guid: f4846c4fa42e26e4c9e84e31e186093d
+  - enabled: 1
+    path: Assets/Scenes/LastScene.unity
+    guid: d309baa10bb8a264ebbf7d1a0f36362a
   m_configObjects: {}

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button selectedButton;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class PauseManager : MonoBehaviour
     private void ShowPauseMenu()
     {
         pauseMenu.SetActive(true);
+        selectedButton.Select();
     }
 
     private void HidePauseMenu()

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorManager : MonoBehaviour
 {
     public bool isPlayerInRange;
     public bool isOpen;
     public Animator animator;
+    public string lastSceneName = "LastScene";
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class DoorManager : MonoBehaviour
             }
         } else if (isPlayerInRange && isOpen)
         {
-            Debug.Log("ENTERING");
+            SceneManager.LoadScene(lastSceneName);
         }
     }
 
