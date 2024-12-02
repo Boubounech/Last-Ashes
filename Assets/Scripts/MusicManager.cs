@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Relations_8" || scene.name == "Sleep_12" || scene.name == "MainMenu")
+        if (scene.name == "Relations_8" || scene.name == "Sleep_12" || scene.name == "MainMenu" || scene.name == "LastScene")
         {
             if (audioSource.isPlaying)
                 audioSource.Stop(); 
