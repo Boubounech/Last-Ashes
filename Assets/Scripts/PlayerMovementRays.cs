@@ -537,10 +537,14 @@ public class PlayerMovementRays : MonoBehaviour
     {
         if (detectObjectScript.GetIsCloseToItem() && context.performed)
         {
-
             GameObject item = detectObjectScript.GetLastObjectTouched();
             PlayerEvents.OnDestroyItem.Invoke(item);
         }
+    }
+
+    public void OpenDoor(InputAction.CallbackContext context)
+    {
+        GameEvents.OnPlayerTryToOpenDoor.Invoke();
     }
 
     public void GroundDive(InputAction.CallbackContext context)

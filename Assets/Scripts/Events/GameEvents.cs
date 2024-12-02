@@ -16,4 +16,5 @@ public static class GameEvents
 
     public static UnityEvent OnPlayerObtainLeftCoin = new UnityEvent();
     public static UnityEvent OnPlayerObtainRightCoin = new UnityEvent();
+    public static UnityEvent OnPlayerTryToOpenDoor = new UnityEvent();
 }
