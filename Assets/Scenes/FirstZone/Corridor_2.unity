@@ -15113,7 +15113,7 @@ MonoBehaviour:
   playerTag: Player
   transitionName: Left
   transition:
-    toSceneName: TestScene2
+    toSceneName: TempleEntrance_1
     toEntryName: Right
   playerSpawnPoint: {fileID: 1981129739}
 --- !u!61 &2045403970
