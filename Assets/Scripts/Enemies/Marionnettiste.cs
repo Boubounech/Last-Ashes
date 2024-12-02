@@ -20,6 +20,7 @@ public class Marionnettiste : MonoBehaviour
     [SerializeField] private string bossID = "Marionnettiste";
 
     public UnityEvent OnDeath = new UnityEvent();
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class Marionnettiste : MonoBehaviour
             isDead = true;
             GameEvents.OnPlayerKilledBoss.Invoke();
         });
+        this.audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -178,6 +180,7 @@ public class Marionnettiste : MonoBehaviour
     void EndFight()
     {
         OnDeath.Invoke();
+        this.audioSource.Stop();
         StartCoroutine(deathCooldown());
     }
 
