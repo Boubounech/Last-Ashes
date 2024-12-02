@@ -1744,7 +1744,7 @@ Transform:
   m_GameObject: {fileID: 820519052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 1, z: 0}
+  m_LocalPosition: {x: 20, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2258,10 +2258,10 @@ PolygonCollider2D:
   m_AutoTiling: 1
   m_Points:
     m_Paths:
-    - - {x: 15.736765, y: 24.710217}
-      - {x: -12.702523, y: 24.442194}
-      - {x: -12.351906, y: -5.3904095}
-      - {x: 15.6947975, y: -5.517378}
+    - - {x: 19.81504, y: 24.710218}
+      - {x: -19.450218, y: 24.887098}
+      - {x: -19.766953, y: -5.6128597}
+      - {x: 19.773077, y: -5.443228}
   m_UseDelaunayMesh: 0
 --- !u!4 &1044833372
 Transform:
@@ -2669,7 +2669,7 @@ Transform:
   m_GameObject: {fileID: 1128672954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 8.5, z: 0}
+  m_LocalPosition: {x: 20, y: 8.5, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4010,7 +4010,7 @@ Transform:
   m_GameObject: {fileID: 1706512679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: 1, z: 0}
+  m_LocalPosition: {x: -20, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4033,7 +4033,7 @@ MonoBehaviour:
   transitionName: Left
   transition:
     toSceneName: Relations_0
-    toEntryName: LeftBottom
+    toEntryName: RightBottom
   playerSpawnPoint: {fileID: 520627078}
 --- !u!61 &1706512682
 BoxCollider2D:
@@ -4428,7 +4428,7 @@ Transform:
   m_GameObject: {fileID: 1738530582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -310}
+  m_LocalPosition: {x: 0.51222503, y: 3.7661698, z: -310}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
