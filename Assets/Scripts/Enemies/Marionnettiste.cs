@@ -82,7 +82,7 @@ public class Marionnettiste : MonoBehaviour
     IEnumerator FadeIn()
     {
         float timer = 0;
-        float startAlpha = 0.5f;
+        float startAlpha = 0.2f;
         float endAlpha = 1f;
 
         while (timer < fadeDuration)
@@ -98,7 +98,7 @@ public class Marionnettiste : MonoBehaviour
     IEnumerator FadeOut()
     {
         float timer = fadeDuration;
-        float targetAlpha = 0.5f;
+        float targetAlpha = 0.2f;
 
         while (timer > 0)
         {
