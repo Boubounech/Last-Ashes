@@ -8,6 +8,7 @@ public class AttackSoundManager : MonoBehaviour
     public AudioSource chargedAttack;
     public AudioSource fireball;
     public AudioSource dash;
+    public AudioSource hitSound;
 
     public void Awake()
     {
@@ -15,6 +16,7 @@ public class AttackSoundManager : MonoBehaviour
         PlayerEvents.OnPlayerReleaseChargeAttack.AddListener(delegate { PlaySound(chargedAttack); });
         PlayerEvents.OnPlayerLaunchFireball.AddListener(delegate { PlaySound(fireball); });
         PlayerEvents.OnPlayerDash.AddListener(delegate { PlaySound(dash); });
+        PlayerEvents.OnPlayerHitDamageable.AddListener(delegate { PlaySound(hitSound); });
 
     }
 

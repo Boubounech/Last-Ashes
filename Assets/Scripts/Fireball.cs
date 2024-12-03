@@ -36,10 +36,8 @@ public class Fireball : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ok");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Debug.Log("hit");
             PlayerEvents.OnPlayerHitDamageable.Invoke(fireballDamage, other.gameObject);
         }
     }

@@ -844,7 +844,7 @@ MonoBehaviour:
   OnEndAttacking:
     m_PersistentCalls:
       m_Calls: []
-  runSpeed: 6
+  runSpeed: 4
   knockbackSpeed: 20
   knockbackTime: 0.1
   stunTime: 0.25
